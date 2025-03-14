@@ -1,0 +1,44 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+
+body {
+  margin-bottom: 60px;
+  
+}
+header{
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: #E67E22 !important;
+}
+
+/*Banner*/
+.banner{
+  width: 100vw; /* Full màn hình */
+  margin-left: calc(-50vw + 50%); /* Dịch chuyển để căn giữa */
+  background-color: #FFD700 !important;
+  height: 300px;
+}
+
+.addJob{
+  background-color: #017110 !important;
+  margin-top: 20px;
+  margin-left: 170px;
+}

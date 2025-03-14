@@ -1,0 +1,72 @@
+@model BTL.Models.NhaTuyenDung
+
+@{
+    ViewData["Title"] = "Thông Tin Nhà Tuyển Dụng";
+    var nhaTuyenDung = ViewBag.NhaTuyenDung as BTL.Models.NhaTuyenDung;
+    var danhSachCongViec = ViewBag.DanhSachCongViec as List<BTL.Models.CongViec>;
+}
+
+<h2 class="text-center">Thông Tin Công Ty</h2>
+
+<div class="container mt-4">
+    <div class="mb-3">
+        <strong>Tên Công Ty:</strong> @Model.TenCongTy
+    </div>
+
+    <div class="mb-3">
+        <strong>Địa Chỉ:</strong> @Model.DiaChi
+    </div>
+
+    <div class="mb-3">
+        <strong>Mô Tả Công Ty:</strong> @Model.MoTaCongTy
+    </div>
+
+    <div class="mb-3">
+        <strong>Website:</strong> <a href="@Model.Website" target="_blank">@Model.Website</a>
+    </div>
+
+    @if (!string.IsNullOrEmpty(Model.Logo))
+    {
+        <div class="mb-3">
+            <strong>Logo Công Ty:</strong> <br />
+            <img src="@Model.Logo" alt="Logo Công Ty" width="150">
+        </div>
+    }
+
+    <a asp-controller="Employer" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Chỉnh Sửa</a>
+    <a asp-controller="Job" asp-action="CreateJob" class="btn btn-primary">Thêm việc</a>
+    <a asp-controller="Home" asp-action="Index" class="btn btn-secondary">Quay lại</a>
+
+</div>
+
+<h3>Danh sách công việc đã đăng</h3>
+@if (danhSachCongViec != null && danhSachCongViec.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Tiêu đề</th>
+                <th>Mô tả</th>
+                <th>Mức lương</th>
+                <th>Địa điểm</th>
+                <th>Ngày đăng</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var job in danhSachCongViec)
+            {
+                <tr>
+                    <td>@job.TieuDe</td>
+                    <td>@job.MoTa</td>
+                    <td>@job.MucLuong</td>
+                    <td>@job.DiaDiem</td>
+                    <td>@job.NgayDang.ToString("dd/MM/yyyy")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>Chưa có công việc nào được đăng.</p>
+}

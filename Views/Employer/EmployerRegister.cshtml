@@ -1,0 +1,37 @@
+@model BTL.Models.NhaTuyenDung
+
+@{
+    ViewData["Title"] = "Đăng ký Nhà Tuyển Dụng";
+}
+
+<h2 class="text-center">Đăng ký Nhà Tuyển Dụng</h2>
+
+<form asp-controller="Employer" asp-action="EmployerRegister" method="post" class="container mt-4">
+    <div class="mb-3">
+        <label asp-for="TenCongTy" class="form-label">Tên Công Ty</label>
+        <input asp-for="TenCongTy" class="form-control" required />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="DiaChi" class="form-label">Địa Chỉ</label>
+        <input asp-for="DiaChi" class="form-control" required />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="MoTaCongTy" class="form-label">Mô Tả Công Ty</label>
+        <textarea asp-for="MoTaCongTy" class="form-control" rows="4" required></textarea>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Website" class="form-label">Website</label>
+        <input asp-for="Website" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Logo" class="form-label">Logo Công Ty</label>
+        <input type="file" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Đăng ký</button>
+    <a asp-controller="Home" asp-action="Index" class="btn btn-secondary">Quay lại</a>
+</form>

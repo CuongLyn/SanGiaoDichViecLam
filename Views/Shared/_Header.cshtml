@@ -1,0 +1,30 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary border-bottom">
+  <div class="container-fluid">
+    <a class="navbar-brand text-white" href="/">Sàn giao dịch việc làm</a>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        @* <li class="nav-item">
+          <a class="nav-link active text-white" aria-current="page" asp-controller="Account" asp-action="EmployerRegister">For Employers</a>
+        </li> *@
+        @if (!string.IsNullOrEmpty(Context.Session.GetString("Email"))) 
+        {
+            <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-white" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                @Context.Session.GetString("HoTen")
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                <li><a class="dropdown-item" asp-controller="Account" asp-action="Logout">Đăng xuất</a></li>
+            </ul>
+        </li>
+        }
+        else 
+        {
+            <li class="nav-item">
+                <a class="nav-link active text-white" asp-controller="Account" asp-action="Login">Đăng nhập</a>
+            </li>
+        }
+      </ul>
+    </div>
+  </div>
+</nav>

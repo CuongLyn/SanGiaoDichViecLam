@@ -1,0 +1,38 @@
+@model BTL.Models.NguoiDung
+
+@{
+    ViewData["Title"] = "Đăng ký";
+}
+
+
+<h2>Đăng ký</h2>
+
+<form asp-controller="Account" asp-action="Register" method="post">
+
+    <div class="form-group">
+        <label asp-for="HoTen"></label>
+        <input asp-for="HoTen" class="form-control" required />
+    </div>
+    <div class="form-group">
+        <label asp-for="Email"></label>
+        <input asp-for="Email" class="form-control" type="email" required />
+        <span class="text-danger" asp-validation-for="Email"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="MatKhau"></label>
+        <input asp-for="MatKhau" class="form-control" type="password" required />
+    </div>
+    <div class="form-group">
+        <label asp-for="SoDienThoai"></label>
+        <input asp-for="SoDienThoai" class="form-control" />
+    </div>
+    
+    <button type="submit" class="btn btn-success mt-2">Đăng ký</button>
+    <a asp-controller="Account" asp-action="Login" class="btn btn-secondary mt-2">Quay lại</a>
+</form>
+
+
+
+
+
+
