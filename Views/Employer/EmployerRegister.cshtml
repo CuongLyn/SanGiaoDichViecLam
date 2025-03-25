@@ -6,7 +6,7 @@
 
 <h2 class="text-center">Đăng ký Nhà Tuyển Dụng</h2>
 
-<form asp-controller="Employer" asp-action="EmployerRegister" method="post" class="container mt-4">
+<form asp-controller="Employer" asp-action="EmployerRegister" method="post" class="container mt-4" enctype="multipart/form-data">
     <div class="mb-3">
         <label asp-for="TenCongTy" class="form-label">Tên Công Ty</label>
         <input asp-for="TenCongTy" class="form-control" required />
@@ -29,8 +29,10 @@
 
     <div class="mb-3">
         <label asp-for="Logo" class="form-label">Logo Công Ty</label>
-        <input type="file" class="form-control" />
+        <input type="file" name="LogoFile" class="form-control" required />
+        <span asp-validation-for="LogoFile" class="text-danger"></span>
     </div>
+
 
     <button type="submit" class="btn btn-primary">Đăng ký</button>
     <a asp-controller="Home" asp-action="Index" class="btn btn-secondary">Quay lại</a>

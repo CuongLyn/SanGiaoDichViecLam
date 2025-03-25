@@ -24,8 +24,14 @@ namespace BTL.Repositories
 
         public async Task AddNhaTuyenDungAsync(NhaTuyenDung nhaTuyenDung)
         {
-            await _context.NhaTuyenDungs.AddAsync(nhaTuyenDung);
-            await _context.SaveChangesAsync();
+            await AddAsync(nhaTuyenDung);
+            await SaveChangesAsync();
+        }
+
+        public async Task UpdateNhaTuyenDungAsync(NhaTuyenDung nhaTuyenDung)
+        {
+            Update(nhaTuyenDung);
+            await SaveChangesAsync();
         }
     }
 }

@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using BTL.Models;
 
+
 namespace BTL.Data{
 
     public class AppDbContext : DbContext{
@@ -10,8 +11,9 @@ namespace BTL.Data{
         public DbSet<NguoiDung> NguoiDungs { get; set; }
         public DbSet<NhaTuyenDung> NhaTuyenDungs { get; set; }
         public DbSet<CongViec> CongViecs { get; set; }
-        
-      
+        public DbSet<UngVien> UngViens { get; set; }
+        public DbSet<UngTuyen> UngTuyens { get; set; }
+     
         
     }
 }

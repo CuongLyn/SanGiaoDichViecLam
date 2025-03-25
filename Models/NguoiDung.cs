@@ -39,7 +39,12 @@ namespace BTL.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public DateTime NgayTao { get; set; } = DateTime.Now;
 
+        //Danh sách công việc
        
+        
+
+        //Liên kết với NhaTuyenDung
+        public virtual NhaTuyenDung ?NhaTuyenDung { get; set; }
 
         
     }

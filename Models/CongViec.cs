@@ -16,7 +16,7 @@ namespace BTL.Models
 
         //Id của người dùng
         [Required]
-        [Column("id_nha_tuyen_dung")]
+        [Column("id_cong_ty")]
         public int IdNhaTuyenDung { get; set; }
 
         [Column("tieu_de")]
@@ -45,7 +45,9 @@ namespace BTL.Models
 
         //Mối quan hệ với bảng người dùng
         [ForeignKey("IdNhaTuyenDung")]
-        public NguoiDung ?NguoiDung { get; set; }
+        public NhaTuyenDung ?NhaTuyenDung { get; set; }
+
+        
 
     }
 }

@@ -1,0 +1,32 @@
+@model BTL.Models.UngVien
+
+@{
+    ViewData["Title"] = "Hồ sơ Ứng Viên";
+}
+
+<h2 class="text-center">Hồ sơ Ứng Viên</h2>
+
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">@Model.NguoiDung?.HoTen</h4>
+
+        <p><strong>Giới thiệu:</strong> @Model.GioiThieu</p>
+        <p><strong>Kỹ năng:</strong> @Model.KyNang</p>
+        <p><strong>Kinh nghiệm:</strong> @Model.KinhNghiem</p>
+
+        @if (!string.IsNullOrEmpty(Model.CV))
+        {
+            <h3>CV của bạn</h3>
+            <iframe src="@Url.Content("~/uploads/" + Model.CV)" width="100%" height="600px"></iframe>
+        }
+        else
+        {
+            <p>Chưa có CV.</p>
+        }
+
+
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Chỉnh sửa</a>
+    </div>
+</div>
+
+<a asp-controller="Home" asp-action="Index" class="btn btn-secondary mt-3">Quay lại</a>

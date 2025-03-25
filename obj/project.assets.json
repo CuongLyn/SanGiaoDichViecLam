@@ -4740,11 +4740,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "G:\\LTW_NangCao\\BTL\\BTL\\BTL.csproj",
+      "projectUniqueName": "G:\\HK2 2024-2025\\LTW_NangCao\\BTL\\BTL\\BTL.csproj",
       "projectName": "BTL",
-      "projectPath": "G:\\LTW_NangCao\\BTL\\BTL\\BTL.csproj",
+      "projectPath": "G:\\HK2 2024-2025\\LTW_NangCao\\BTL\\BTL\\BTL.csproj",
       "packagesPath": "C:\\Users\\Dell\\.nuget\\packages\\",
-      "outputPath": "G:\\LTW_NangCao\\BTL\\BTL\\obj\\",
+      "outputPath": "G:\\HK2 2024-2025\\LTW_NangCao\\BTL\\BTL\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

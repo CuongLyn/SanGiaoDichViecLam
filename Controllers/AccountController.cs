@@ -24,6 +24,11 @@ namespace BTL.Controllers
             return View();
         }
 
+        //Thông báo
+        public IActionResult Notification(){
+            return View("Notifications");
+        }
+
         //Đăng ký
         [HttpPost]
         public async Task<IActionResult> Register(NguoiDung nguoiDung)

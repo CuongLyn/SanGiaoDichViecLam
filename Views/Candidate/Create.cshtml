@@ -1,0 +1,35 @@
+@model BTL.Models.UngVien
+
+@{
+    ViewData["Title"] = "Tạo Hồ Sơ Ứng Viên";
+}
+
+<h2 class="mb-4">Tạo Hồ Sơ Ứng Viên</h2>
+
+<form asp-controller="Candidate" asp-action="Create" method="post" enctype="multipart/form-data">
+    <div class="mb-3">
+        <label asp-for="GioiThieu" class="form-label">Giới thiệu</label>
+        <textarea asp-for="GioiThieu" class="form-control"></textarea>
+       
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="KyNang" class="form-label">Kỹ năng</label>
+        <textarea asp-for="KyNang" class="form-control"></textarea>
+       
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="KinhNghiem" class="form-label">Kinh nghiệm</label>
+        <textarea asp-for="KinhNghiem" class="form-control"></textarea>
+        
+    </div>
+
+    <div class="mb-3">
+        <label for="cvFile" class="form-label">Chọn CV (PDF):</label>
+        <input type="file" name="cvFile" accept=".pdf" class="form-control" required />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Lưu</button>
+    <a asp-action="Index" class="btn btn-secondary">Hủy</a>
+</form>

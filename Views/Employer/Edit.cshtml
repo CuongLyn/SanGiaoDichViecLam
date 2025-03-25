@@ -1,0 +1,55 @@
+@model BTL.Models.NhaTuyenDung
+
+@{
+    ViewData["Title"] = "Chỉnh sửa thông tin nhà tuyển dụng";
+}
+
+<h2>Chỉnh sửa thông tin nhà tuyển dụng</h2>
+
+<form asp-action="Edit" method="post" enctype="multipart/form-data">
+    <input type="hidden" asp-for="Id" />
+
+    <div class="form-group">
+        <label asp-for="TenCongTy">Tên Công Ty</label>
+        <input asp-for="TenCongTy" class="form-control" />
+        <span asp-validation-for="TenCongTy" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="DiaChi">Địa Chỉ</label>
+        <input asp-for="DiaChi" class="form-control" />
+        <span asp-validation-for="DiaChi" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="MoTaCongTy">Mô Tả Công Ty</label>
+        <textarea asp-for="MoTaCongTy" class="form-control"></textarea>
+        <span asp-validation-for="MoTaCongTy" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Website">Website</label>
+        <input asp-for="Website" class="form-control" />
+        <span asp-validation-for="Website" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Logo hiện tại</label><br>
+        @if (!string.IsNullOrEmpty(Model?.Logo))
+        {
+            <img src="@Model.Logo" alt="Logo công ty" width="150" height="150" />
+        }
+        else
+        {
+            <p>Chưa có logo</p>
+        }
+    </div>
+
+    <div class="form-group">
+        <label>Chọn logo mới (nếu cần thay đổi)</label>
+        <input type="file" name="LogoFile" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
+    <a asp-action="EmployerProfile" class="btn btn-secondary">Hủy</a>
+</form>

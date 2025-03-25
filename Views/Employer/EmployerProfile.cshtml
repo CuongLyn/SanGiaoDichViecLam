@@ -25,6 +25,9 @@
         <strong>Website:</strong> <a href="@Model.Website" target="_blank">@Model.Website</a>
     </div>
 
+    
+
+
     @if (!string.IsNullOrEmpty(Model.Logo))
     {
         <div class="mb-3">
@@ -39,32 +42,33 @@
 
 </div>
 
-<h3>Danh sách công việc đã đăng</h3>
+<h3 class="text-center">Danh sách công việc đã đăng</h3>
 @if (danhSachCongViec != null && danhSachCongViec.Any())
 {
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Tiêu đề</th>
-                <th>Mô tả</th>
-                <th>Mức lương</th>
-                <th>Địa điểm</th>
-                <th>Ngày đăng</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var job in danhSachCongViec)
-            {
-                <tr>
-                    <td>@job.TieuDe</td>
-                    <td>@job.MoTa</td>
-                    <td>@job.MucLuong</td>
-                    <td>@job.DiaDiem</td>
-                    <td>@job.NgayDang.ToString("dd/MM/yyyy")</td>
-                </tr>
-            }
-        </tbody>
-    </table>
+    <div class="container mt-4">
+      <div class ="row">
+        @foreach (var job in danhSachCongViec)
+        {
+        <div class="col-md-6 mb-4">
+            <div class="card" onclick="location.href='@Url.Action("Detail", "Job", new { id = @job.Id })';" style="cursor: pointer;">
+              <div class="row g-0">
+                <div class="col-md-4">
+                  <img src="@job.NhaTuyenDung.Logo" class="img-fluid rounded-start" alt="Image">
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title">@job.TieuDe</h5>
+                    <p class="card-text">@job.MoTa</p>
+                    <p class="card-text"><small class="text-body-secondary">Ngày Đăng: @job.NgayDang.ToString("dd/MM/yyyy")</small></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+
 }
 else
 {

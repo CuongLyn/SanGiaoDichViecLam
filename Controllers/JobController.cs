@@ -52,5 +52,18 @@ namespace BTL.Controllers
 
             return RedirectToAction("EmployerProfile", "Employer");
         }
+        //Chi tiết
+        public async Task<IActionResult> Detail(int id)
+        {
+            var congViec = await _congViecRepo.GetCongViecByIdAsync(id);
+            if (congViec == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            return View("Detail", congViec);
+        }
+
+       
+
     }
 }

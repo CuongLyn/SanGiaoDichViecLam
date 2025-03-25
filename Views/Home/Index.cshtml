@@ -1,5 +1,6 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
+    var danhSachCongViec = ViewBag.DanhSachCongViec as List<BTL.Models.CongViec>;
 }
 
 
@@ -38,6 +39,7 @@
                     <!-- Button tìm kiếm -->
                     <button class=" btn btn-primary" type="button">Tìm kiếm</button>
                 </div>
+                <!-- add -->
             </div>
             
         </div>
@@ -91,26 +93,35 @@
 </div>
 
 
-<div class="container mt-4">
-  <div class="row">
-    @for (int i = 0; i < 7; i++) // Hiển thị 4 card
-    {
-      <div class="col-md-6 mb-4">
-        <div class="card">
-          <div class="row g-0">
-            <div class="col-md-4">
-              <img src="data:image/jpeg;base64,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" class="img-fluid rounded-start" alt="Image">
+@if (danhSachCongViec != null && danhSachCongViec.Any())
+{
+    <div class="container mt-4">
+      <div class ="row">
+        @foreach (var job in danhSachCongViec)
+        {
+            <div class="col-md-6 mb-4">
+                <div class="card" onclick="location.href='@Url.Action("Detail", "Job", new { id = @job.Id })';" style="cursor: pointer;">
+                    <div class="row g-0 align-items-center">
+                        <div class="col-md-4 d-flex justify-content-center">
+                            <img src="@job.NhaTuyenDung.Logo" class="img-fluid rounded" style="max-width: 80%; height: auto;" alt="Company Logo">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">@job.TieuDe</h5>
+                                <p class="card-text">@job.MoTa</p>
+                                <p class="card-text"><small class="text-body-secondary">Ngày Đăng: @job.NgayDang.ToString("dd/MM/yyyy")</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-8">
-              <div class="card-body">
-                <h5 class="card-title">Card title @i</h5>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-                <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
-              </div>
-            </div>
-          </div>
-        </div>
+        }
+
       </div>
-    }
-  </div>
-</div>
+    </div>
+
+}
+else
+{
+    <p>Chưa có công việc nào được đăng.</p>
+}

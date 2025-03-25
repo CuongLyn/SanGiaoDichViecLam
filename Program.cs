@@ -22,6 +22,8 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.AddScoped<INguoiDungRepository, NguoiDungRepository>();
 builder.Services.AddScoped<INhaTuyenDungRepository, NhaTuyenDungRepository>();
 builder.Services.AddScoped<ICongViecRepository, CongViecRepository>();
+builder.Services.AddScoped<IUngVienRepository, UngVienRepository>();
+builder.Services.AddScoped<IUngTuyenRepository, UngTuyenRepository>();
 
 
 

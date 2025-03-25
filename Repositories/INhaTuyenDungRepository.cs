@@ -7,5 +7,6 @@ namespace BTL.Repositories
     {
         Task<NhaTuyenDung?> GetByUserIdAsync(int userId);
         Task AddNhaTuyenDungAsync(NhaTuyenDung nhaTuyenDung);
+        Task UpdateNhaTuyenDungAsync(NhaTuyenDung nhaTuyenDung);
     }
 }
