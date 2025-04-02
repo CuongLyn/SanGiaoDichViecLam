@@ -17,79 +17,79 @@ build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = BTL
 build_property.RootNamespace = BTL
-build_property.ProjectDir = G:\HK2 2024-2025\LTW_NangCao\BTL\BTL\
+build_property.ProjectDir = g:\HK2 2024-2025\LTW_NangCao\BTL\BTL\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = G:\HK2 2024-2025\LTW_NangCao\BTL\BTL
+build_property.MSBuildProjectDirectory = g:\HK2 2024-2025\LTW_NangCao\BTL\BTL
 build_property._RazorSourceGeneratorDebug = 
 
-[G:/HK2 2024-2025/LTW_NangCao/BTL/BTL/Views/Account/Login.cshtml]
+[g:/HK2 2024-2025/LTW_NangCao/BTL/BTL/Views/Account/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HK2 2024-2025/LTW_NangCao/BTL/BTL/Views/Account/Notifications.cshtml]
+[g:/HK2 2024-2025/LTW_NangCao/BTL/BTL/Views/Account/Notifications.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxOb3RpZmljYXRpb25zLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HK2 2024-2025/LTW_NangCao/BTL/BTL/Views/Account/Register.cshtml]
+[g:/HK2 2024-2025/LTW_NangCao/BTL/BTL/Views/Account/Register.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HK2 2024-2025/LTW_NangCao/BTL/BTL/Views/Candidate/CandidateProfile.cshtml]
+[g:/HK2 2024-2025/LTW_NangCao/BTL/BTL/Views/Candidate/CandidateProfile.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FuZGlkYXRlXENhbmRpZGF0ZVByb2ZpbGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HK2 2024-2025/LTW_NangCao/BTL/BTL/Views/Candidate/Create.cshtml]
+[g:/HK2 2024-2025/LTW_NangCao/BTL/BTL/Views/Candidate/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FuZGlkYXRlXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HK2 2024-2025/LTW_NangCao/BTL/BTL/Views/Employer/Edit.cshtml]
+[g:/HK2 2024-2025/LTW_NangCao/BTL/BTL/Views/Employer/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbG95ZXJcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HK2 2024-2025/LTW_NangCao/BTL/BTL/Views/Employer/EmployerProfile.cshtml]
+[g:/HK2 2024-2025/LTW_NangCao/BTL/BTL/Views/Employer/EmployerProfile.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbG95ZXJcRW1wbG95ZXJQcm9maWxlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HK2 2024-2025/LTW_NangCao/BTL/BTL/Views/Employer/EmployerRegister.cshtml]
+[g:/HK2 2024-2025/LTW_NangCao/BTL/BTL/Views/Employer/EmployerRegister.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbG95ZXJcRW1wbG95ZXJSZWdpc3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HK2 2024-2025/LTW_NangCao/BTL/BTL/Views/Home/Index.cshtml]
+[g:/HK2 2024-2025/LTW_NangCao/BTL/BTL/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HK2 2024-2025/LTW_NangCao/BTL/BTL/Views/Job/Create.cshtml]
+[g:/HK2 2024-2025/LTW_NangCao/BTL/BTL/Views/Job/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSm9iXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HK2 2024-2025/LTW_NangCao/BTL/BTL/Views/Job/Detail.cshtml]
+[g:/HK2 2024-2025/LTW_NangCao/BTL/BTL/Views/Job/Detail.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSm9iXERldGFpbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HK2 2024-2025/LTW_NangCao/BTL/BTL/Views/Shared/Error.cshtml]
+[g:/HK2 2024-2025/LTW_NangCao/BTL/BTL/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HK2 2024-2025/LTW_NangCao/BTL/BTL/Views/Shared/_Header.cshtml]
+[g:/HK2 2024-2025/LTW_NangCao/BTL/BTL/Views/Shared/_Header.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9IZWFkZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HK2 2024-2025/LTW_NangCao/BTL/BTL/Views/Shared/_ValidationScriptsPartial.cshtml]
+[g:/HK2 2024-2025/LTW_NangCao/BTL/BTL/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HK2 2024-2025/LTW_NangCao/BTL/BTL/Views/_ViewImports.cshtml]
+[g:/HK2 2024-2025/LTW_NangCao/BTL/BTL/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HK2 2024-2025/LTW_NangCao/BTL/BTL/Views/_ViewStart.cshtml]
+[g:/HK2 2024-2025/LTW_NangCao/BTL/BTL/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HK2 2024-2025/LTW_NangCao/BTL/BTL/Views/Shared/_Layout.cshtml]
+[g:/HK2 2024-2025/LTW_NangCao/BTL/BTL/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-r300d95vn0
