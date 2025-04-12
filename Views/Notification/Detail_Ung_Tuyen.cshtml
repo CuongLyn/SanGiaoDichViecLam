@@ -1,0 +1,86 @@
+@model BTL.Models.ThongBao
+
+@{
+    string trangThai = ViewBag.TrangThai as string;
+    string passBorder = "";
+    string failBorder = "";
+
+    if (trangThai == "Pass")
+    {
+        passBorder = "border-success";
+    }
+    else if (trangThai == "Fail")
+    {
+        failBorder = "border-danger";
+    }
+    else if (trangThai == "Đang chờ")
+    {
+        passBorder = "border-primary";
+        failBorder = "border-primary";
+    }
+}
+
+
+<div class="container mt-4">
+    <div class="card shadow">
+        <div class="card-header bg-primary text-white">
+            <h3>Chi tiết Thông báo</h3>
+        </div>
+        <div class="card-body">
+            <p><strong>Nội dung:</strong> @Model.NoiDung</p>
+            <p><strong>Ngày tạo:</strong> @Model.NgayTao.ToString("dd/MM/yyyy HH:mm")</p>
+        </div>
+    </div>
+
+    <div class="card mt-4 shadow">
+        <div class="card-header bg-success text-white">
+            <h4>Thông tin Ứng viên</h4>
+        </div>
+        <div class="card-body">
+            <div class="row mb-2">
+                <div class="col-md-6">
+                    <strong>Họ tên:</strong> @ViewBag.TenUngVien
+                </div>
+                <div class="col-md-6">
+                    <strong>Email:</strong> @ViewBag.EmailUngVien
+                </div>
+            </div>
+
+            <div class="row mb-2">
+                <div class="col-md-6">
+                    <strong>Số điện thoại:</strong> @ViewBag.SDTUngVien
+                </div>
+                <div class="col-md-6">
+                    <strong>Vị trí ứng tuyển:</strong> @ViewBag.ViTriUngTuyen
+                </div>
+            </div>
+
+            <div class="mb-2">
+                <strong>Giới thiệu:</strong>
+                <p>@ViewBag.GioiThieu</p>
+            </div>
+
+            <div>
+                <strong>CV:</strong>
+                @if (!string.IsNullOrEmpty(ViewBag.CV))
+                {
+                    <a href="@Url.Content(ViewBag.CV)" class="btn btn-outline-primary btn-sm" target="_blank">Xem CV</a>
+                }
+                else
+                {
+                    <span class="text-muted">Không có CV</span>
+                }
+            </div>
+
+            <div class="mt-3">
+                <form asp-action="UpdateTrangThai" asp-controller="Notification" method="post">
+                    <input type="hidden" name="ungTuyenId" value="@ViewBag.UngTuyenId" />
+
+                    <button type="submit" name="trangThai" value="Pass" class="btn @passBorder">Pass</button>
+                    <button type="submit" name="trangThai" value="Fail" class="btn ms-2 @failBorder">Fail</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>

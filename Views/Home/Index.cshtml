@@ -1,87 +1,69 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Trang chủ";
     var danhSachCongViec = ViewBag.DanhSachCongViec as List<BTL.Models.CongViec>;
 }
 
+<style>
+    .hover-shadow {
+        transition: all 0.3s ease-in-out;
+    }
 
-<div class="banner py-4 bg-light">
+    .hover-shadow:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    }
+</style>
+
+<!-- Banner -->
+<section class="bg-light py-5">
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-10">
-                <div class="input-group">
-                    <!-- Dropdown danh mục nghề nghiệp -->
-                    <div class="dropdown">
-                        <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
-                            Chọn ngành nghề
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">IT</a></li>
-                            <li><a class="dropdown-item" href="#">Marketing</a></li>
-                            <li><a class="dropdown-item" href="#">Kế toán</a></li>
-                        </ul>
-                    </div>
-
-                    <!-- Ô input tìm kiếm -->
-                    <input type="text" class="form-control" placeholder="Nhập từ khóa tìm kiếm...">
-
-                    <!-- Dropdown địa điểm -->
-                    <div class="dropdown">
-                        <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
-                            Chọn địa điểm
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Hà Nội</a></li>
-                            <li><a class="dropdown-item" href="#">TP. Hồ Chí Minh</a></li>
-                            <li><a class="dropdown-item" href="#">Đà Nẵng</a></li>
-                        </ul>
-                    </div>
-
-                    <!-- Button tìm kiếm -->
-                    <button class=" btn btn-primary" type="button">Tìm kiếm</button>
-                </div>
-                <!-- add -->
-            </div>
-            
+        <div class="text-center mb-4">
+            <h2 class="fw-bold">Tìm công việc phù hợp với bạn</h2>
         </div>
-        
+        <form asp-action="Index" asp-controller="Home" method="get">
+            <div class="row justify-content-center">
+                <div class="col-md-4 mb-2">
+                    <input type="text" class="form-control" name="tuKhoa" placeholder="Nhập từ khóa tìm kiếm...">
+                </div>
+                <div class="col-md-4 mb-2">
+                    <input type="text" class="form-control" name="diaDiem" placeholder="Nhập địa điểm...">
+                </div>
+                <div class="col-md-2 mb-2">
+                    <button type="submit" class="btn btn-primary w-100">Tìm kiếm</button>
+                </div>
+            </div>
+        </form>
+
+        <div class="text-center mt-4">
+            <button type="button" class="btn btn-outline-primary px-4" data-bs-toggle="modal" data-bs-target="#recruitModal">
+                <i class="bi bi-plus-circle me-2"></i> Tuyển dụng
+            </button>
+        </div>
     </div>
+</section>
 
-    <!--Thêm việc-->
-   <!-- Nút bấm mở modal -->
-<button type="button" class="addJob btn btn-outline-secondary text-white" data-bs-toggle="modal" data-bs-target="#recruitModal">
-    Tuyển dụng
-</button>
-
-
-<!-- Modal -->
+<!-- Modal tuyển dụng -->
 <div class="modal fade" id="recruitModal" tabindex="-1" aria-labelledby="recruitModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content border-0">
-            <div class="modal-header border-bottom-1 px-4 border-bottom-0">
-                <h5 class="modal-title text-truncate overflow-hidden font-weight-600 text-nowrap">Chào bạn,</h5>
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content p-4 rounded-4">
+            <div class="modal-header border-0">
+                <h5 class="modal-title fw-semibold">Chào bạn,</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
             </div>
-            <div class="d-flex justify-content-center">
-                <div class="w-75 text-center">
-                    <h5 class="title">Bạn hãy xác nhận thông tin!</h5>
-                    <p class="mb-4 title-content">
-                        Để tối ưu trải nghiệm trên TopCV, vui lòng chọn nhóm phù hợp với bạn.
-                        
-                    </p>
-                </div>
-            </div>
-            <div class="modal-footer content justify-content-center text-center mx-0">
-                <div class="font-weight-bold desc">
-                    Vui lòng lựa chọn nhóm phù hợp nhất với bạn.
-                </div>
-                <div class="row w-100 d-flex justify-content-between">
-                    <div class="col-6 text-center grid">
-                       
-                        
-                        <a class="btn btn-primary ml-1" asp-controller="Home" asp-action="RedirectToEmployer">Tôi là nhà tuyển dụng</a>
+            <div class="modal-body text-center">
+                <h5 class="fw-bold">Bạn hãy xác nhận thông tin!</h5>
+                <p class="text-muted">Để tối ưu trải nghiệm, vui lòng chọn nhóm phù hợp với bạn.</p>
+
+                <div class="row mt-4">
+                    <div class="col-6">
+                        <a class="btn btn-primary w-100" asp-action="RedirectToEmployer" asp-controller="Home">
+                            Tôi là nhà tuyển dụng
+                        </a>
                     </div>
-                    <div class="col-6 text-center grid mb-2">
-                        
-                        <a class="btn btn-primary ml-1" asp-controller="Home" asp-action="RedirectToCandidate">Tôi là ứng viên tìm việc</a>
+                    <div class="col-6">
+                        <a class="btn btn-outline-primary w-100" asp-action="RedirectToCandidate" asp-controller="Home">
+                            Tôi là ứng viên
+                        </a>
                     </div>
                 </div>
             </div>
@@ -89,39 +71,51 @@
     </div>
 </div>
 
-    
-</div>
-
-
+<!-- Danh sách công việc -->
+<section class="container mt-5">
 @if (danhSachCongViec != null && danhSachCongViec.Any())
 {
-    <div class="container mt-4">
-      <div class ="row">
-        @foreach (var job in danhSachCongViec)
-        {
-            <div class="col-md-6 mb-4">
-                <div class="card" onclick="location.href='@Url.Action("Detail", "Job", new { id = @job.Id })';" style="cursor: pointer;">
-                    <div class="row g-0 align-items-center">
-                        <div class="col-md-4 d-flex justify-content-center">
-                            <img src="@job.NhaTuyenDung.Logo" class="img-fluid rounded" style="max-width: 80%; height: auto;" alt="Company Logo">
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h5 class="card-title">@job.TieuDe</h5>
-                                <p class="card-text">@job.MoTa</p>
-                                <p class="card-text"><small class="text-body-secondary">Ngày Đăng: @job.NgayDang.ToString("dd/MM/yyyy")</small></p>
+    <div class="container mt-5">
+        <div class="row row-cols-1 row-cols-md-2 g-4">
+            @foreach (var job in danhSachCongViec)
+            {
+                <div class="col">
+                    <div class="card h-100 shadow-sm border hover-shadow" 
+                         onclick="location.href='@Url.Action("Detail", "Job", new { id = job.Id })';" 
+                         style="cursor: pointer;">
+                        <div class="row g-0 align-items-center">
+                            <div class="col-4 text-center p-3">
+                                <img src="@job.NhaTuyenDung.Logo" 
+                                     class="img-fluid" 
+                                     style="max-width: 100px; height: 100px; object-fit: cover;" 
+                                     alt="Logo công ty" />
+                            </div>
+                            <div class="col-8">
+                                <div class="card-body">
+                                    <h5 class="card-title fw-bold text-primary mb-2">@job.TieuDe</h5>
+                                    <p class="card-text text-muted small mb-2">
+                                        @(job.MoTa.Length > 80 ? job.MoTa.Substring(0, 85) + "..." : job.MoTa)
+                                    </p>
+                                    <p class="card-text">
+                                        <small class="text-secondary">
+                                            🗓 Đăng ngày: @job.NgayDang.ToString("dd/MM/yyyy")
+                                        </small>
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        }
-
-      </div>
+            }
+        </div>
     </div>
-
 }
 else
 {
-    <p>Chưa có công việc nào được đăng.</p>
+    <div class="container text-center mt-5">
+        <div class="alert alert-info" role="alert">
+            Hiện chưa có công việc nào được đăng. Vui lòng quay lại sau!
+        </div>
+    </div>
 }
+</section>

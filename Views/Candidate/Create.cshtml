@@ -4,32 +4,56 @@
     ViewData["Title"] = "Tạo Hồ Sơ Ứng Viên";
 }
 
-<h2 class="mb-4">Tạo Hồ Sơ Ứng Viên</h2>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-7">
+            <div class="card shadow-sm border-0">
+                <div class="card-body p-4">
+                    <h3 class="text-center text-primary mb-4">
+                        <i class="bi bi-person-lines-fill me-2"></i>Tạo Hồ Sơ Ứng Viên
+                    </h3>
 
-<form asp-controller="Candidate" asp-action="Create" method="post" enctype="multipart/form-data">
-    <div class="mb-3">
-        <label asp-for="GioiThieu" class="form-label">Giới thiệu</label>
-        <textarea asp-for="GioiThieu" class="form-control"></textarea>
-       
+                    <form asp-controller="Candidate" asp-action="Create" method="post" enctype="multipart/form-data">
+                        <div class="mb-3">
+                            <label asp-for="GioiThieu" class="form-label fw-semibold">
+                                <i class="bi bi-chat-text me-1"></i>Giới thiệu
+                            </label>
+                            <textarea asp-for="GioiThieu" class="form-control" rows="4" placeholder="Giới thiệu ngắn gọn về bản thân..."></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="KyNang" class="form-label fw-semibold">
+                                <i class="bi bi-tools me-1"></i>Kỹ năng
+                            </label>
+                            <textarea asp-for="KyNang" class="form-control" rows="4" placeholder="Liệt kê các kỹ năng nổi bật..."></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="KinhNghiem" class="form-label fw-semibold">
+                                <i class="bi bi-briefcase-fill me-1"></i>Kinh nghiệm
+                            </label>
+                            <textarea asp-for="KinhNghiem" class="form-control" rows="4" placeholder="Mô tả kinh nghiệm làm việc..."></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="cvFile" class="form-label fw-semibold">
+                                <i class="bi bi-file-earmark-arrow-up me-1"></i>Chọn CV (PDF)
+                            </label>
+                            <input type="file" name="cvFile" accept=".pdf" class="form-control" required />
+                        </div>
+
+                        <div class="d-grid gap-2 mt-4">
+                            <button type="submit" class="btn btn-success">
+                                <i class="bi bi-save2 me-1"></i> Lưu hồ sơ
+                            </button>
+                            <a asp-action="Index" asp-controller="Home" class="btn btn-outline-secondary">
+                                <i class="bi bi-x-circle me-1"></i> Hủy bỏ
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
+</div>
 
-    <div class="mb-3">
-        <label asp-for="KyNang" class="form-label">Kỹ năng</label>
-        <textarea asp-for="KyNang" class="form-control"></textarea>
-       
-    </div>
-
-    <div class="mb-3">
-        <label asp-for="KinhNghiem" class="form-label">Kinh nghiệm</label>
-        <textarea asp-for="KinhNghiem" class="form-control"></textarea>
-        
-    </div>
-
-    <div class="mb-3">
-        <label for="cvFile" class="form-label">Chọn CV (PDF):</label>
-        <input type="file" name="cvFile" accept=".pdf" class="form-control" required />
-    </div>
-
-    <button type="submit" class="btn btn-primary">Lưu</button>
-    <a asp-action="Index" class="btn btn-secondary">Hủy</a>
-</form>

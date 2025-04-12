@@ -24,12 +24,22 @@ namespace BTL.Controllers
 
         }
 
-        public IActionResult Index()
+        // public IActionResult Index()
+        // {
+        //     var danhSachCongViec = _congViecRepo.GetDsCongViecAsync().Result;
+        //     ViewBag.DanhSachCongViec = danhSachCongViec;
+        //     return View();
+        // }
+
+        public async Task<IActionResult> Index(string tuKhoa, string nganhNghe, string diaDiem)
         {
-            var danhSachCongViec = _congViecRepo.GetDsCongViecAsync().Result;
+            var danhSachCongViec = await _congViecRepo.TimKiemCongViecAsync(tuKhoa, diaDiem);
             ViewBag.DanhSachCongViec = danhSachCongViec;
+
             return View();
         }
+
+        
 
 
         public IActionResult Privacy()

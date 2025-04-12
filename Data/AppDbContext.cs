@@ -13,7 +13,7 @@ namespace BTL.Data{
         public DbSet<CongViec> CongViecs { get; set; }
         public DbSet<UngVien> UngViens { get; set; }
         public DbSet<UngTuyen> UngTuyens { get; set; }
-     
+        public DbSet<ThongBao> ThongBaos { get; set; }
         
     }
 }

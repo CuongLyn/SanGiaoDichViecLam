@@ -7,5 +7,6 @@ namespace BTL.Repositories
     {
         Task<NguoiDung?> GetByEmailAsync(string? email);
         Task AddNguoiDungAsync(NguoiDung nguoiDung);
+        Task<NguoiDung?> GetByIdAsync(int id);
     }
 }

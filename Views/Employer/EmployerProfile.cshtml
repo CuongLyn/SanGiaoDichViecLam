@@ -2,75 +2,126 @@
 
 @{
     ViewData["Title"] = "Thông Tin Nhà Tuyển Dụng";
-    var nhaTuyenDung = ViewBag.NhaTuyenDung as BTL.Models.NhaTuyenDung;
     var danhSachCongViec = ViewBag.DanhSachCongViec as List<BTL.Models.CongViec>;
 }
 
-<h2 class="text-center">Thông Tin Công Ty</h2>
-
-<div class="container mt-4">
-    <div class="mb-3">
-        <strong>Tên Công Ty:</strong> @Model.TenCongTy
-    </div>
-
-    <div class="mb-3">
-        <strong>Địa Chỉ:</strong> @Model.DiaChi
-    </div>
-
-    <div class="mb-3">
-        <strong>Mô Tả Công Ty:</strong> @Model.MoTaCongTy
-    </div>
-
-    <div class="mb-3">
-        <strong>Website:</strong> <a href="@Model.Website" target="_blank">@Model.Website</a>
-    </div>
-
-    
-
-
-    @if (!string.IsNullOrEmpty(Model.Logo))
-    {
-        <div class="mb-3">
-            <strong>Logo Công Ty:</strong> <br />
-            <img src="@Model.Logo" alt="Logo Công Ty" width="150">
-        </div>
+<style>
+    .hover-shadow {
+        transition: all 0.3s ease-in-out;
     }
 
-    <a asp-controller="Employer" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Chỉnh Sửa</a>
-    <a asp-controller="Job" asp-action="CreateJob" class="btn btn-primary">Thêm việc</a>
-    <a asp-controller="Home" asp-action="Index" class="btn btn-secondary">Quay lại</a>
+    .hover-shadow:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    }
+</style>
 
+<h2 class="text-center my-4">Thông Tin Công Ty</h2>
+
+<div class="container mb-5">
+    <div class="row">
+        <div class="col-md-4 text-center mb-3">
+            @if (!string.IsNullOrEmpty(Model.Logo))
+            {
+                <img src="@Model.Logo" class="img-fluid rounded border" alt="Logo Công Ty" style="max-width: 200px;" />
+            }
+            else
+            {
+                <div class="text-muted">Chưa có logo</div>
+            }
+        </div>
+
+        <div class="col-md-8">
+            <div class="mb-2">
+                <strong>Tên Công Ty:</strong> <span class="text-primary">@Model.TenCongTy</span>
+            </div>
+            <div class="mb-2">
+                <strong>Địa Chỉ:</strong> @Model.DiaChi
+            </div>
+            <div class="mb-2">
+                <strong>Mô Tả Công Ty:</strong> @Model.MoTaCongTy
+            </div>
+            <div class="mb-3">
+                <strong>Website:</strong> <a href="@Model.Website" target="_blank">@Model.Website</a>
+            </div>
+
+            <div class="d-flex flex-wrap gap-2">
+                <a asp-controller="Employer" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-outline-primary">
+                    <i class="bi bi-pencil-square"></i> Chỉnh Sửa
+                </a>
+                <a asp-controller="Job" asp-action="CreateJob" class="btn btn-success">
+                    <i class="bi bi-plus-circle"></i> Thêm Việc
+                </a>
+                <a asp-controller="Home" asp-action="Index" class="btn btn-secondary">
+                    <i class="bi bi-arrow-left"></i> Quay Lại
+                </a>
+            </div>
+        </div>
+    </div>
 </div>
 
-<h3 class="text-center">Danh sách công việc đã đăng</h3>
+<h3 class="text-center mb-4">Danh sách công việc đã đăng</h3>
+
 @if (danhSachCongViec != null && danhSachCongViec.Any())
 {
-    <div class="container mt-4">
-      <div class ="row">
-        @foreach (var job in danhSachCongViec)
-        {
-        <div class="col-md-6 mb-4">
-            <div class="card" onclick="location.href='@Url.Action("Detail", "Job", new { id = @job.Id })';" style="cursor: pointer;">
-              <div class="row g-0">
-                <div class="col-md-4">
-                  <img src="@job.NhaTuyenDung.Logo" class="img-fluid rounded-start" alt="Image">
-                </div>
-                <div class="col-md-8">
-                  <div class="card-body">
-                    <h5 class="card-title">@job.TieuDe</h5>
-                    <p class="card-text">@job.MoTa</p>
-                    <p class="card-text"><small class="text-body-secondary">Ngày Đăng: @job.NgayDang.ToString("dd/MM/yyyy")</small></p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        }
-      </div>
-    </div>
+    <div class="container">
+        <div class="row row-cols-1 row-cols-md-2 g-4">
+            @foreach (var job in danhSachCongViec)
+            {
+                <div class="col">
+                    <div class="card h-100 shadow-sm border hover-shadow"
+                         onclick="location.href='@Url.Action("Detail", "Job", new { id = job.Id })';"
+                         style="cursor: pointer;">
+                        <div class="row g-0 align-items-center">
+                            <div class="col-4 text-center p-3">
+                                <img src="@job.NhaTuyenDung.Logo"
+                                     class="img-fluid"
+                                     style="max-width: 100px; height: 100px; object-fit: cover;"
+                                     alt="Logo công ty" />
+                            </div>
+                            <div class="col-8">
+                                <div class="card-body position-relative">
+                                    <h5 class="card-title fw-bold text-primary mb-2">@job.TieuDe</h5>
+                                    <p class="card-text text-muted small mb-2">
+                                        @(job.MoTa.Length > 80 ? job.MoTa.Substring(0, 85) + "..." : job.MoTa)
+                                    </p>
+                                    <p class="card-text">
+                                        <small class="text-secondary">🗓 Ngày đăng: @job.NgayDang.ToString("dd/MM/yyyy")</small>
+                                    </p>
 
+                                    <div class="position-absolute bottom-0 end-0 m-2 d-flex align-items-center">
+                                        <a asp-controller="Job" asp-action="Edit" asp-route-id="@job.Id"
+                                           class="text-primary me-2" title="Chỉnh sửa">
+                                            <i class="bi bi-pencil-square fs-5"></i>
+                                        </a>
+                                        <form asp-controller="Job" asp-action="Delete" asp-route-id="@job.Id" method="post" class="d-inline"
+                                              onsubmit="return confirm('Bạn có chắc muốn xóa công việc này?');">
+                                            <button type="submit" class="btn btn-link text-danger p-0" title="Xóa">
+                                                <i class="bi bi-trash fs-5"></i>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
 }
 else
 {
-    <p>Chưa có công việc nào được đăng.</p>
+    <div class="container text-center mt-5">
+        <div class="alert alert-info" role="alert">
+            Chưa có công việc nào được đăng.
+        </div>
+    </div>
 }
+
+<style>
+    .hover-shadow:hover {
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        transition: box-shadow 0.3s;
+    }
+</style>

@@ -17,79 +17,95 @@ build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = BTL
 build_property.RootNamespace = BTL
-build_property.ProjectDir = g:\HK2 2024-2025\LTW_NangCao\BTL\BTL\
+build_property.ProjectDir = G:\HK2 2024-2025\LTW_NangCao\BTL\BTL\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = g:\HK2 2024-2025\LTW_NangCao\BTL\BTL
+build_property.MSBuildProjectDirectory = G:\HK2 2024-2025\LTW_NangCao\BTL\BTL
 build_property._RazorSourceGeneratorDebug = 
 
-[g:/HK2 2024-2025/LTW_NangCao/BTL/BTL/Views/Account/Login.cshtml]
+[G:/HK2 2024-2025/LTW_NangCao/BTL/BTL/Views/Account/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[g:/HK2 2024-2025/LTW_NangCao/BTL/BTL/Views/Account/Notifications.cshtml]
+[G:/HK2 2024-2025/LTW_NangCao/BTL/BTL/Views/Account/Notifications.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxOb3RpZmljYXRpb25zLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[g:/HK2 2024-2025/LTW_NangCao/BTL/BTL/Views/Account/Register.cshtml]
+[G:/HK2 2024-2025/LTW_NangCao/BTL/BTL/Views/Account/Register.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[g:/HK2 2024-2025/LTW_NangCao/BTL/BTL/Views/Candidate/CandidateProfile.cshtml]
+[G:/HK2 2024-2025/LTW_NangCao/BTL/BTL/Views/Candidate/CandidateProfile.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FuZGlkYXRlXENhbmRpZGF0ZVByb2ZpbGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[g:/HK2 2024-2025/LTW_NangCao/BTL/BTL/Views/Candidate/Create.cshtml]
+[G:/HK2 2024-2025/LTW_NangCao/BTL/BTL/Views/Candidate/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FuZGlkYXRlXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[g:/HK2 2024-2025/LTW_NangCao/BTL/BTL/Views/Employer/Edit.cshtml]
+[G:/HK2 2024-2025/LTW_NangCao/BTL/BTL/Views/Candidate/JobApplied.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FuZGlkYXRlXEpvYkFwcGxpZWQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/HK2 2024-2025/LTW_NangCao/BTL/BTL/Views/Employer/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbG95ZXJcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[g:/HK2 2024-2025/LTW_NangCao/BTL/BTL/Views/Employer/EmployerProfile.cshtml]
+[G:/HK2 2024-2025/LTW_NangCao/BTL/BTL/Views/Employer/EmployerProfile.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbG95ZXJcRW1wbG95ZXJQcm9maWxlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[g:/HK2 2024-2025/LTW_NangCao/BTL/BTL/Views/Employer/EmployerRegister.cshtml]
+[G:/HK2 2024-2025/LTW_NangCao/BTL/BTL/Views/Employer/EmployerRegister.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbG95ZXJcRW1wbG95ZXJSZWdpc3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[g:/HK2 2024-2025/LTW_NangCao/BTL/BTL/Views/Home/Index.cshtml]
+[G:/HK2 2024-2025/LTW_NangCao/BTL/BTL/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[g:/HK2 2024-2025/LTW_NangCao/BTL/BTL/Views/Job/Create.cshtml]
+[G:/HK2 2024-2025/LTW_NangCao/BTL/BTL/Views/Job/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSm9iXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[g:/HK2 2024-2025/LTW_NangCao/BTL/BTL/Views/Job/Detail.cshtml]
+[G:/HK2 2024-2025/LTW_NangCao/BTL/BTL/Views/Job/Detail.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSm9iXERldGFpbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[g:/HK2 2024-2025/LTW_NangCao/BTL/BTL/Views/Shared/Error.cshtml]
+[G:/HK2 2024-2025/LTW_NangCao/BTL/BTL/Views/Job/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSm9iXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/HK2 2024-2025/LTW_NangCao/BTL/BTL/Views/Notification/Detail_Ung_Tuyen.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTm90aWZpY2F0aW9uXERldGFpbF9VbmdfVHV5ZW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/HK2 2024-2025/LTW_NangCao/BTL/BTL/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[g:/HK2 2024-2025/LTW_NangCao/BTL/BTL/Views/Shared/_Header.cshtml]
+[G:/HK2 2024-2025/LTW_NangCao/BTL/BTL/Views/Shared/_Footer.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Gb290ZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/HK2 2024-2025/LTW_NangCao/BTL/BTL/Views/Shared/_Header.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9IZWFkZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[g:/HK2 2024-2025/LTW_NangCao/BTL/BTL/Views/Shared/_ValidationScriptsPartial.cshtml]
+[G:/HK2 2024-2025/LTW_NangCao/BTL/BTL/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[g:/HK2 2024-2025/LTW_NangCao/BTL/BTL/Views/_ViewImports.cshtml]
+[G:/HK2 2024-2025/LTW_NangCao/BTL/BTL/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[g:/HK2 2024-2025/LTW_NangCao/BTL/BTL/Views/_ViewStart.cshtml]
+[G:/HK2 2024-2025/LTW_NangCao/BTL/BTL/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[g:/HK2 2024-2025/LTW_NangCao/BTL/BTL/Views/Shared/_Layout.cshtml]
+[G:/HK2 2024-2025/LTW_NangCao/BTL/BTL/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-r300d95vn0

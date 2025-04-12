@@ -28,6 +28,11 @@ namespace BTL.Models
         [StringLength(50)]
         public string TrangThai { get; set; } = "Đang chờ";
 
+        [Required]
+        [Column("cv")]
+        [StringLength(255)]
+        public String ?CV {get; set;}
+
         //Liên kết với NguoiDung
         [ForeignKey("IdUngVien")]
         public NguoiDung ?NguoiDung {get; set;}
@@ -35,6 +40,9 @@ namespace BTL.Models
         //Lien kết với CongViec
         [ForeignKey("IdCongViec")]
         public CongViec ?CongViec {get; set;}
+
+       
+
 
     }
 

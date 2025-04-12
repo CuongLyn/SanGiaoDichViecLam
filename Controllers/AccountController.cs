@@ -3,6 +3,9 @@ using BTL.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using System.Threading.Tasks;
+using System.Security.Cryptography;
+using System.Text;
+using System;
 
 namespace BTL.Controllers
 {
@@ -14,22 +17,27 @@ namespace BTL.Controllers
         {
             _nguoiDungRepo = nguoiDungRepo;
         }
+
+        // GET: /Account/Login
         [HttpGet]
         public IActionResult Login()
         {
             return View();
         }
+
+        // GET: /Account/Register
         public IActionResult Register()
         {
             return View();
         }
 
-        //Thông báo
-        public IActionResult Notification(){
+        // GET: /Account/Notification
+        public IActionResult Notification()
+        {
             return View("Notifications");
         }
 
-        //Đăng ký
+        // POST: /Account/Register
         [HttpPost]
         public async Task<IActionResult> Register(NguoiDung nguoiDung)
         {
@@ -42,20 +50,27 @@ namespace BTL.Controllers
                     return View(nguoiDung);
                 }
 
+                // Mã hóa mật khẩu trước khi lưu
+                nguoiDung.MatKhau = HashPassword(nguoiDung.MatKhau);
+
                 await _nguoiDungRepo.AddNguoiDungAsync(nguoiDung);
                 return RedirectToAction("Login");
             }
             return View(nguoiDung);
         }
 
+        // POST: /Account/Login
         [HttpPost]
         public async Task<IActionResult> Login(string email, string password)
         {
             var user = await _nguoiDungRepo.GetByEmailAsync(email);
-           
-            if(ModelState.IsValid){
 
-                if(user == null || user.MatKhau != password){
+            if (ModelState.IsValid)
+            {
+                string hashedPassword = HashPassword(password);
+
+                if (user == null || user.MatKhau != hashedPassword)
+                {
                     ModelState.AddModelError("mk", "Email hoặc mật khẩu không đúng!");
                     return View();
                 }
@@ -65,28 +80,28 @@ namespace BTL.Controllers
                 HttpContext.Session.SetString("HoTen", user.HoTen ?? "");
                 HttpContext.Session.SetInt32("Id", user.Id);
 
-
-                var currentEmail = HttpContext.Session.GetInt32("Id");
-                Console.WriteLine(currentEmail);
-
                 return RedirectToAction("Index", "Home");
             }
-            
+
             return View();
-            
         }
 
+        // GET: /Account/Logout
         public IActionResult Logout()
         {
             HttpContext.Session.Clear(); // Xóa toàn bộ Session
             return RedirectToAction("Login");
         }
 
-        //Nhà tuyển dụng
-       
-
-
-    
-
+        // Hàm mã hóa SHA256
+        private string HashPassword(string password)
+        {
+            using (SHA256 sha256 = SHA256.Create())
+            {
+                byte[] bytes = Encoding.UTF8.GetBytes(password);
+                byte[] hash = sha256.ComputeHash(bytes);
+                return Convert.ToBase64String(hash);
+            }
+        }
     }
 }

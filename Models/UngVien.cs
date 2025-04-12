@@ -40,6 +40,10 @@ namespace BTL.Models
         [ForeignKey("NguoiDungId")]
         public NguoiDung ?NguoiDung {get; set;}
 
+        //Ds công việc
+      
+        
+
         
         
     }

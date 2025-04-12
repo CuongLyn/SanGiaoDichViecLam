@@ -12,7 +12,7 @@ html {
   box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
-html {
+/* html {
   position: relative;
   min-height: 100%;
 }
@@ -21,13 +21,37 @@ html {
 body {
   margin-bottom: 60px;
   
+} */
+
+html, body {
+  height: 100%;
+  margin: 0;
 }
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin-bottom: 0; /* Đảm bảo không có margin thừa dưới footer */
+}
+
+main {
+  flex: 1;
+}
+
+/* Footer */
+footer {
+  margin-top: auto; /* Đảm bảo footer luôn ở dưới cùng */
+  background-color: #E67E22; /* Thêm màu nền cho footer nếu cần */
+}
+
 header{
   position: sticky;
   top: 0;
   z-index: 1000;
   background-color: #E67E22 !important;
 }
+
 
 /*Banner*/
 .banner{
@@ -41,4 +65,11 @@ header{
   background-color: #017110 !important;
   margin-top: 20px;
   margin-left: 170px;
+}
+
+.border-success {
+  border: 2px solid #28a745; /* xanh */
+}
+.border-danger {
+  border: 2px solid #dc3545; /* đỏ */
 }

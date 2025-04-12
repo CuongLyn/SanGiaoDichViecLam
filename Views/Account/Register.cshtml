@@ -21,11 +21,14 @@
     <div class="form-group">
         <label asp-for="MatKhau"></label>
         <input asp-for="MatKhau" class="form-control" type="password" required />
+        <span class="text-danger" asp-validation-for="MatKhau"></span>
     </div>
     <div class="form-group">
         <label asp-for="SoDienThoai"></label>
-        <input asp-for="SoDienThoai" class="form-control" />
+        <input asp-for="SoDienThoai" class="form-control" pattern="0\d{9}" title="Số điện thoại phải bắt đầu bằng 0 và có 10 chữ số" required />
+        <span class="text-danger" asp-validation-for="SoDienThoai"></span> 
     </div>
+
     
     <button type="submit" class="btn btn-success mt-2">Đăng ký</button>
     <a asp-controller="Account" asp-action="Login" class="btn btn-secondary mt-2">Quay lại</a>

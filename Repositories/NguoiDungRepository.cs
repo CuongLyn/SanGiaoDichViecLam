@@ -25,5 +25,10 @@ namespace BTL.Repositories
             await _context.NguoiDungs.AddAsync(nguoiDung);
             await _context.SaveChangesAsync();
         }
+
+        public async Task<NguoiDung?> GetByIdAsync(int id)
+        {
+            return await _context.NguoiDungs.FindAsync(id);
+        }
     }
 }

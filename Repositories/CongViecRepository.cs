@@ -46,6 +46,45 @@ namespace BTL.Repositories
             return congViec ?? new CongViec();
         }
 
+        //Chỉnh sửa công việc
+        public async Task UpdateCongViecAsync(CongViec congViec)
+        {
+            Update(congViec);
+            await SaveChangesAsync();
+        }
+        //Xóa công việc
+        public async Task DeleteCongViecAsync(int id)
+        {
+            var congViec = await GetCongViecByIdAsync(id);
+            if (congViec != null)
+            {
+                Delete(congViec);
+                await SaveChangesAsync();
+            }
+        }
+        //Tìm kiếm
+        public async Task<List<CongViec>> TimKiemCongViecAsync(string tuKhoa, string diaDiem)
+        {
+            var query = _context.CongViecs
+                .Include(cv => cv.NhaTuyenDung)
+                .AsQueryable();
+
+            if (!string.IsNullOrEmpty(tuKhoa))
+            {
+                query = query.Where(cv => cv.TieuDe.Contains(tuKhoa) || cv.MoTa.Contains(tuKhoa));
+            }
+
+        
+
+            if (!string.IsNullOrEmpty(diaDiem))
+            {
+                query = query.Where(cv => cv.DiaDiem.Contains(diaDiem));
+            }
+
+            return await query.ToListAsync();
+        }
+
+
        
     }
 }

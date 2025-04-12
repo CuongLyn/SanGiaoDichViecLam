@@ -24,6 +24,7 @@ builder.Services.AddScoped<INhaTuyenDungRepository, NhaTuyenDungRepository>();
 builder.Services.AddScoped<ICongViecRepository, CongViecRepository>();
 builder.Services.AddScoped<IUngVienRepository, UngVienRepository>();
 builder.Services.AddScoped<IUngTuyenRepository, UngTuyenRepository>();
+builder.Services.AddScoped<IThongBaoRepository, ThongBaoRepository>();
 
 
 

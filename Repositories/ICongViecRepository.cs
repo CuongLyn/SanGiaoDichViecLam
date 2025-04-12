@@ -10,5 +10,14 @@ namespace BTL.Repositories
         Task AddCongViecAsync(CongViec congViec);
         Task<CongViec> GetCongViecByIdAsync(int id);
 
+        //Update công việc
+        Task UpdateCongViecAsync(CongViec congViec);
+
+        //Xóa công việc
+        Task DeleteCongViecAsync(int id);
+
+        //Tìm kiếm
+        Task<List<CongViec>> TimKiemCongViecAsync(string tuKhoa, string diaDiem);
+
     }
 }

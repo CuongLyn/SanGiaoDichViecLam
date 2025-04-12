@@ -21,6 +21,12 @@ namespace BTL.Repositories
                 .FirstOrDefaultAsync(n => n.NguoiDungId == userId);
         }
 
+        public async Task<NhaTuyenDung?> GetByIdAsync(int id)
+        {
+            return await _context.NhaTuyenDungs
+                .FirstOrDefaultAsync(n => n.Id == id);
+        }
+
 
         public async Task AddNhaTuyenDungAsync(NhaTuyenDung nhaTuyenDung)
         {

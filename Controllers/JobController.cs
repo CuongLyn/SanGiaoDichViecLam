@@ -13,7 +13,7 @@ namespace BTL.Controllers
         private readonly INhaTuyenDungRepository _nhaTuyenDungRepo;
         private readonly INguoiDungRepository _nguoiDungRepo;
 
-        public JobController(ICongViecRepository congViecRepo, INhaTuyenDungRepository nhaTuyenDungRepo, INguoiDungRepository nguoiDungRepo)
+        public JobController(ICongViecRepository congViecRepo, INhaTuyenDungRepository nhaTuyenDungRepo, INguoiDungRepository nguoiDungRepo )
         {
             _congViecRepo = congViecRepo;
             _nhaTuyenDungRepo = nhaTuyenDungRepo;
@@ -62,6 +62,47 @@ namespace BTL.Controllers
             }
             return View("Detail", congViec);
         }
+
+        //Danh sách công việc đã ứng tuyển
+         //Sửa công việc
+        public async Task<IActionResult> Edit(int id)
+        {
+            var congViec = await _congViecRepo.GetCongViecByIdAsync(id);
+            if (congViec == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            return View("Edit", congViec);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(CongViec congViec)
+        {
+            
+            var existingCongViec = await _congViecRepo.GetCongViecByIdAsync(congViec.Id);
+            
+            existingCongViec.TieuDe = congViec.TieuDe;
+            existingCongViec.MoTa = congViec.MoTa;
+            existingCongViec.MucLuong = congViec.MucLuong;
+            existingCongViec.LoaiHinh = congViec.LoaiHinh;
+            existingCongViec.NgayDang = congViec.NgayDang;
+
+            await _congViecRepo.UpdateCongViecAsync(existingCongViec);
+
+            return RedirectToAction("EmployerProfile", "Employer");
+        }
+
+        //Xóa công việc
+        [HttpPost]
+        public async Task<IActionResult> Delete(int id)
+        {
+            await _congViecRepo.DeleteCongViecAsync(id);
+            return RedirectToAction("EmployerProfile", "Employer");
+        }
+
+
+
+       
 
        
 

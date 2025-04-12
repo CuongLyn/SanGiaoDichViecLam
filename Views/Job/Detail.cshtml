@@ -4,116 +4,131 @@
     ViewData["Title"] = "Chi Tiết Công Việc";
 }
 
-<h2 class="text-center">Chi Tiết Công Việc</h2>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
 
-<div class="container mt-4">
+<div class="container mt-5">
+    <h2 class="text-center text-primary mb-4"><i class="bi bi-briefcase-fill me-2"></i>Chi Tiết Công Việc</h2>
+
     <div class="row">
-
-        <div class="job-detail col-md-8">
-            <div class="card">
+        <!-- Thông tin công việc -->
+        <div class="col-lg-8 mb-4">
+            <div class="card shadow border-0">
                 <div class="card-body">
-                    <h4 class="card-title">@Model.TieuDe</h4>
-                    <p><strong>Mô tả:</strong> @Model.MoTa</p>
-                    <p><strong>Địa điểm:</strong> @Model.DiaDiem</p>
-                    <p><strong>Mức lương:</strong> @Model.MucLuong</p>
-                    <p><strong>Loại hình:</strong> @Model.LoaiHinh</p>
-                    <p><strong>Ngày đăng:</strong> @Model.NgayDang.ToString("dd/MM/yyyy")</p>
+                    <h3 class="card-title text-success"><i class="bi bi-card-text me-2"></i>@Model.TieuDe</h3>
+                    <hr />
+                    <p><i class="bi bi-file-text me-2 text-secondary"></i><strong>Mô tả:</strong> @Model.MoTa</p>
+                    <p><i class="bi bi-geo-alt-fill me-2 text-secondary"></i><strong>Địa điểm:</strong> @Model.DiaDiem</p>
+                    <p><i class="bi bi-cash-stack me-2 text-secondary"></i><strong>Mức lương:</strong> @Model.MucLuong</p>
+                    <p><i class="bi bi-briefcase me-2 text-secondary"></i><strong>Loại hình:</strong> @Model.LoaiHinh</p>
+                    <p><i class="bi bi-calendar-day me-2 text-secondary"></i><strong>Ngày đăng:</strong> @Model.NgayDang.ToString("dd/MM/yyyy")</p>
                 </div>
             </div>
         </div>
 
-        <div class="employer-infor col-md-4">
-          <div class="card">
-              <div class="card-body">
-                  @if (Model.NhaTuyenDung != null)
-                  {
-                      <div class="d-flex align-items-start">
-                          <img src="@Model.NhaTuyenDung.Logo" alt="Logo Công Ty" class="img-fluid me-3" style="max-width: 100px; height: auto;">
-                          <h5 class="card-title m-0">@Model.NhaTuyenDung.TenCongTy</h5>
-                      </div>
-
-                      <p class="mt-4"><strong>Địa chỉ:</strong> @Model.NhaTuyenDung.DiaChi</p>
-                      <p class="mt-2"><strong>Website:</strong> <a href="@Model.NhaTuyenDung.Website" target="_blank">@Model.NhaTuyenDung.Website</a></p>
-                  }
-                  else
-                  {
-                      <p>Thông tin nhà tuyển dụng không khả dụng.</p>
-                  }
-
-              </div>
-          </div>
-      </div>
-
+        <!-- Thông tin nhà tuyển dụng -->
+        <div class="col-lg-4 mb-4">
+            <div class="card shadow border-0">
+                <div class="card-body text-center">
+                    @if (Model.NhaTuyenDung != null)
+                    {
+                        <img src="@Model.NhaTuyenDung.Logo" alt="Logo Công Ty" class="img-fluid mb-3" style="max-height: 100px;">
+                        <h5 class="text-primary">@Model.NhaTuyenDung.TenCongTy</h5>
+                        <p><i class="bi bi-geo-alt me-1 text-secondary"></i>@Model.NhaTuyenDung.DiaChi</p>
+                        <p><i class="bi bi-globe me-1 text-secondary"></i><a href="@Model.NhaTuyenDung.Website" target="_blank">@Model.NhaTuyenDung.Website</a></p>
+                    }
+                    else
+                    {
+                        <p class="text-danger">Thông tin nhà tuyển dụng không khả dụng.</p>
+                    }
+                </div>
+            </div>
+        </div>
     </div>
 
+    <!-- Nút ứng tuyển -->
+    <div class="text-center mt-3">
+        <button class="btn btn-success me-2" data-bs-toggle="modal" data-bs-target="#applyModal">
+            <i class="bi bi-send-check me-1"></i>Ứng tuyển
+        </button>
+        <a asp-controller="Employer" asp-action="EmployerProfile" class="btn btn-outline-primary">
+            <i class="bi bi-arrow-left-circle me-1"></i>Quay lại
+        </a>
+    </div>
 </div>
-
-<button type="button" class="btn btn-success mt-3" data-bs-toggle="modal" data-bs-target="#applyModal">
-    Ứng tuyển
-</button>
-<a asp-controller="Employer" asp-action="EmployerProfile" class="btn btn-primary mt-3">Quay lại</a>
-
 
 <!-- Modal ứng tuyển -->
 <div class="modal fade" id="applyModal" tabindex="-1" aria-labelledby="applyModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="applyModalLabel">Ứng Tuyển Ngay</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form id="applyForm">
-          <!-- Trường tải lên CV -->
-          <div class="mb-3">
-            <label for="cvUpload" class="form-label"><strong>Tải lên CV</strong></label>
-            <input type="file" class="form-control" id="cvUpload" accept=".pdf,.doc,.docx">
-          </div>
+    <div class="modal-dialog">
+        <div class="modal-content shadow-sm border-0">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title" id="applyModalLabel"><i class="bi bi-send me-2"></i>Ứng Tuyển Ngay</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Đóng"></button>
+            </div>
+            <div class="modal-body">
+                <form id="applyForm">
+                    <div class="mb-3">
+                        <label for="cvUpload" class="form-label"><i class="bi bi-upload me-1"></i>CV (PDF/DOC)</label>
+                        <input type="file" class="form-control" id="cvUpload" accept=".pdf,.doc,.docx">
+                    </div>
 
-          <!-- Trường nhập liệu -->
-          <div class="mb-3">
-            <label for="fullName" class="form-label"><strong>Họ tên</strong></label>
-            <input type="text" class="form-control" id="fullName" placeholder="Nhập họ tên">
-          </div>
+                    <div class="mb-3">
+                        <label for="fullName" class="form-label"><i class="bi bi-person-fill me-1"></i>Họ tên</label>
+                        <input type="text" class="form-control" id="fullName" placeholder="Nguyễn Văn A">
+                    </div>
 
-          <div class="mb-3">
-            <label for="email" class="form-label"><strong>Email</strong></label>
-            <input type="email" class="form-control" id="email" placeholder="Nhập email">
-          </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label"><i class="bi bi-envelope-fill me-1"></i>Email</label>
+                        <input type="email" class="form-control" id="email" placeholder="example@email.com">
+                    </div>
 
-          <div class="mb-3">
-            <label for="phone" class="form-label"><strong>Số điện thoại</strong></label>
-            <input type="text" class="form-control" id="phone" placeholder="Nhập số điện thoại">
-          </div>
-        </form>
-      </div>
+                    <div class="mb-3">
+                        <label for="phone" class="form-label"><i class="bi bi-telephone-fill me-1"></i>Số điện thoại</label>
+                        <input type="text" class="form-control" id="phone" placeholder="090xxxxxxx">
+                    </div>
+                </form>
+            </div>
 
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-        <button type="submit" class="btn btn-primary" onclick="submitApplication()">Nộp hồ sơ ứng tuyển</button>
-      </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                <button type="submit" class="btn btn-primary" onclick="submitApplication()">
+                    <i class="bi bi-send-fill me-1"></i>Nộp hồ sơ
+                </button>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 
+<!-- Script xử lý nộp hồ sơ -->
 <script>
-  function submitApplication() {
-    let fullName = document.getElementById('fullName').value;
-    let email = document.getElementById('email').value;
-    let phone = document.getElementById('phone').value;
-    let cv = document.getElementById('cvUpload').files[0];
+    function submitApplication() {
+        const fullName = document.getElementById('fullName').value;
+        const email = document.getElementById('email').value;
+        const phone = document.getElementById('phone').value;
+        const cvFile = document.getElementById('cvUpload').files[0];
 
-    if (!fullName || !email || !phone || !cv) {
-      alert('Vui lòng điền đầy đủ thông tin và tải lên CV.');
-      return;
+        if (!fullName || !email || !phone || !cvFile) {
+            alert('Vui lòng điền đầy đủ thông tin và tải lên CV.');
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append('jobId', '@Model.Id');
+        formData.append('cv', cvFile);
+        formData.append('fullName', fullName);
+        formData.append('email', email);
+        formData.append('phone', phone);
+
+        fetch('/Application/ApplyJob', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.text())
+        .then(data => {
+            alert(data);
+            const modalElement = document.getElementById('applyModal');
+            const modalInstance = bootstrap.Modal.getInstance(modalElement);
+            modalInstance.hide();
+        })
+        .catch(error => console.error('Lỗi:', error));
     }
-
-    alert('Hồ sơ đã được gửi thành công!');
-    // Thực hiện AJAX hoặc xử lý backend ở đây nếu cần.
-
-   // Đóng modal sau khi alert được đóng
-    let modalElement = document.getElementById('applyModal');
-    let modalInstance = bootstrap.Modal.getInstance(modalElement); // Lấy instance của modal
-    modalInstance.hide(); // Ẩn modal
-  }
 </script>

@@ -1,29 +1,33 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary border-bottom">
   <div class="container-fluid">
-    <a class="navbar-brand text-white" href="/">Sàn giao dịch việc làm</a>
+    <a class="navbar-brand text-white" href="/">WorkHub - Sàn giao dịch việc làm trực tuyến</a>
 
     <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto">
+      <ul class="navbar-nav ms-auto" style="display: flex; align-items: center;">
         @* <li class="nav-item">
           <a class="nav-link active text-white" aria-current="page" asp-controller="Account" asp-action="EmployerRegister">For Employers</a>
         </li> *@
         @if (!string.IsNullOrEmpty(Context.Session.GetString("Email"))) 
         {
             <li class="nav-item dropdown d-flex align-items-center">
-                <a class="nav-link text-white position-relative d-flex align-items-center " asp-action="Notification" asp-controller="Account" >
-                    <i class="bi bi-bell fs-5"></i>
-                    <span class="ms-3">Thông báo</span>
-                    <span class="position-absolute translate-middle badge rounded-pill bg-danger" 
-                          style="top: 12px; right: 75px; transform: translate(50%, -50%);">
-                        3
-                    </span>
-                </a>
+                <li class="nav-item dropdown d-flex align-items-center">
+                    <a class="nav-link text-white position-relative d-flex align-items-center" href="#" id="notificationDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi bi-bell fs-5"></i>
+                        <span class="ms-3">Thông báo</span>
+                        <span class="position-absolute translate-middle badge rounded-pill bg-danger" id="notificationBadge" style="top: 12px; right: 75px; transform: translate(50%, -50%);"></span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="notificationDropdown" id="notificationList">
+                        <li class="dropdown-item text-center"><em>Không có thông báo</em></li>
+                    </ul>
+                </li>
+
                 <a class="nav-link dropdown-toggle text-white ms-3" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     @Context.Session.GetString("HoTen")
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
                     <li><a class="dropdown-item" asp-controller="Account" asp-action="Logout">Đăng xuất</a></li>
                     <li><a class="dropdown-item" asp-controller="Candidate" asp-action="CandidateProfile">Hồ sơ</a></li>
+                    <li><a class="dropdown-item" asp-controller="Candidate" asp-action="JobApplied">Việc làm đã ứng tuyển</a></li>
                 </ul>
             </li>
 
@@ -39,3 +43,107 @@
     </div>
   </div>
 </nav>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        function loadNotificationCount() {
+            $.ajax({
+                url: "/Notification/GetNotificationCount",
+                type: "GET",
+                success: function (data) {
+                    if (data.count > 0) {
+                        $("#notificationBadge").text(data.count).show();
+                    } else {
+                        $("#notificationBadge").hide();
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error("Lỗi AJAX:", xhr.responseText);
+                }
+            });
+        }
+
+        function loadNotifications() {
+            $.ajax({
+                url: "/Notification/GetNotifications",
+                type: "GET",
+                success: function (data) {
+                    let notificationList = $("#notificationList");
+                    notificationList.empty();
+
+                    notificationList.append(`
+                        <li class="dropdown-header text-center fw-bold">Thông Báo</li>
+                        <li><hr class="dropdown-divider"></li>
+                    `);
+
+                    @* if (data.length > 0) {
+                        data.forEach(function (notification, index) {
+                            let itemClass = notification.daXem ? "text-secondary" : "text-dark fw-bold";
+                            notificationList.append(`
+                                <li>
+                                    <a class="dropdown-item ${itemClass}" href="/Notification/Detail/${notification.id}" data-id="${notification.id}">
+                                        ${notification.title}
+                                    </a>
+                                </li>
+                            `);
+                        
+                        });
+
+                        notificationList.append(`
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item text-center text-primary" href="/Account/Notification">Xem tất cả</a></li>
+                        `);
+                    } else {
+                        notificationList.append(`<li class="dropdown-item text-center"><em>Không có thông báo</em></li>`);
+                    } *@
+                    if (data.length > 0) {
+                        data.forEach(function (notification, index) {
+                            let itemClass = notification.daXem ? "bg-light text-secondary" : "bg-warning text-dark fw-bold";
+                            
+                            // Giới hạn số ký tự hiển thị (ví dụ: 50 ký tự)
+                            let titleShort = notification.title.length > 30 ? notification.title.substring(0, 30) + "..." : notification.title;
+
+                            notificationList.append(`
+                                <li class="dropdown-item ${itemClass}">
+                                    <a class="text-dark text-decoration-none" href="/Notification/Detail/${notification.id}" data-id="${notification.id}">
+                                        ${titleShort}
+                                    </a>
+                                </li>
+                            `);
+                        });
+
+                        notificationList.append(`
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item text-center text-primary text-decoration-none" href="/Account/Notification">Xem tất cả</a></li>
+                        `);
+                    } else {
+                        notificationList.append(`<li class="dropdown-item text-center"><em>Không có thông báo</em></li>`);
+                    }
+
+
+                },
+                error: function (xhr, status, error) {
+                    console.error("Lỗi AJAX:", xhr.responseText);
+                }
+            });
+        }
+
+        $("#notificationDropdown").on("click", function () {
+            loadNotifications();
+        });
+
+        // Đánh dấu thông báo là đã đọc khi click vào
+        $(document).on("click", "#notificationList a", function () {
+            let id = $(this).data("id");
+            $.post("/Notification/MarkAsRead", { id: id }, function () {
+                loadNotificationCount();
+            });
+        });
+
+        loadNotificationCount();
+    });
+</script>
+
+
+

@@ -48,6 +48,7 @@ namespace BTL.Models
         public NhaTuyenDung ?NhaTuyenDung { get; set; }
 
         
+        
 
     }
 }

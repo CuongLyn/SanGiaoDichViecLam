@@ -12,15 +12,20 @@ namespace BTL.Controllers
         private readonly IUngVienRepository _ungVienRepo;
         private readonly INhaTuyenDungRepository _nhaTuyenDungRepo;
         private readonly INguoiDungRepository _nguoiDungRepo;
+        private readonly IUngTuyenRepository _ungTuyenRepo;  
 
 
 
 
-        public CandidateController(IUngVienRepository ungVienRepo, INhaTuyenDungRepository nhaTuyenDungRepo, INguoiDungRepository nguoiDungRepo)
+        public CandidateController(IUngVienRepository ungVienRepo, 
+                                    INhaTuyenDungRepository nhaTuyenDungRepo, 
+                                    INguoiDungRepository nguoiDungRepo,
+                                    IUngTuyenRepository ungTuyenRepo)
         {
             _ungVienRepo = ungVienRepo;
             _nhaTuyenDungRepo = nhaTuyenDungRepo;
             _nguoiDungRepo = nguoiDungRepo;
+            _ungTuyenRepo = ungTuyenRepo;
         }
 
         public IActionResult Create(){
@@ -90,6 +95,20 @@ namespace BTL.Controllers
             return View("CandidateProfile", existingUngVien);
         }
 
+        //Lấy ra danh sách công việc đã ứng tuyển
+        public async Task<IActionResult> JobApplied(int id)
+        {
+            var userId = HttpContext.Session.GetInt32("Id");
+            if (userId == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
 
+            var jobs = await _ungTuyenRepo.GetJobsAppliedByUserIdAsync(userId.Value);
+            return View("JobApplied", jobs);
+        }
+
+
+       
     }
 }

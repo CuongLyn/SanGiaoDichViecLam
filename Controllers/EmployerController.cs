@@ -172,6 +172,10 @@ namespace BTL.Controllers
             return RedirectToAction("EmployerProfile", "Employer");
         }
 
+
+        //Sửa công việc
+        
+
         
 
         

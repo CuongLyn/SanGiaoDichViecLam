@@ -4,52 +4,69 @@
     ViewData["Title"] = "Chỉnh sửa thông tin nhà tuyển dụng";
 }
 
-<h2>Chỉnh sửa thông tin nhà tuyển dụng</h2>
+<h2 class="text-center my-4 text-primary">Chỉnh sửa thông tin nhà tuyển dụng</h2>
 
-<form asp-action="Edit" method="post" enctype="multipart/form-data">
-    <input type="hidden" asp-for="Id" />
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-10">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <form asp-action="Edit" method="post" enctype="multipart/form-data">
+                        <input type="hidden" asp-for="Id" />
 
-    <div class="form-group">
-        <label asp-for="TenCongTy">Tên Công Ty</label>
-        <input asp-for="TenCongTy" class="form-control" />
-        <span asp-validation-for="TenCongTy" class="text-danger"></span>
+                        <div class="mb-3">
+                            <label asp-for="TenCongTy" class="form-label fw-semibold">Tên Công Ty</label>
+                            <input asp-for="TenCongTy" class="form-control" placeholder="Nhập tên công ty..." />
+                            <span asp-validation-for="TenCongTy" class="text-danger small"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="DiaChi" class="form-label fw-semibold">Địa Chỉ</label>
+                            <input asp-for="DiaChi" class="form-control" placeholder="Nhập địa chỉ công ty..." />
+                            <span asp-validation-for="DiaChi" class="text-danger small"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="MoTaCongTy" class="form-label fw-semibold">Mô Tả Công Ty</label>
+                            <textarea asp-for="MoTaCongTy" class="form-control" rows="4" placeholder="Giới thiệu về công ty..."></textarea>
+                            <span asp-validation-for="MoTaCongTy" class="text-danger small"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Website" class="form-label fw-semibold">Website</label>
+                            <input asp-for="Website" class="form-control" placeholder="https://tencongty.vn" />
+                            <span asp-validation-for="Website" class="text-danger small"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Logo hiện tại</label><br />
+                            @if (!string.IsNullOrEmpty(Model?.Logo))
+                            {
+                                <img src="@Model.Logo" alt="Logo công ty" class="rounded border" style="max-width: 150px; height: 150px; object-fit: cover;" />
+                            }
+                            else
+                            {
+                                <p class="text-muted fst-italic">Chưa có logo</p>
+                            }
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label fw-semibold">Chọn logo mới (nếu cần thay đổi)</label>
+                            <input type="file" name="LogoFile" class="form-control" />
+                        </div>
+
+                        <div class="d-flex justify-content-between">
+                            <button type="submit" class="btn btn-primary px-4">
+                                <i class="bi bi-save me-1"></i> Lưu thay đổi
+                            </button>
+                            <a asp-action="EmployerProfile" class="btn btn-secondary">
+                                <i class="bi bi-arrow-left me-1"></i> Hủy
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
+</div>
 
-    <div class="form-group">
-        <label asp-for="DiaChi">Địa Chỉ</label>
-        <input asp-for="DiaChi" class="form-control" />
-        <span asp-validation-for="DiaChi" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="MoTaCongTy">Mô Tả Công Ty</label>
-        <textarea asp-for="MoTaCongTy" class="form-control"></textarea>
-        <span asp-validation-for="MoTaCongTy" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="Website">Website</label>
-        <input asp-for="Website" class="form-control" />
-        <span asp-validation-for="Website" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
-        <label>Logo hiện tại</label><br>
-        @if (!string.IsNullOrEmpty(Model?.Logo))
-        {
-            <img src="@Model.Logo" alt="Logo công ty" width="150" height="150" />
-        }
-        else
-        {
-            <p>Chưa có logo</p>
-        }
-    </div>
-
-    <div class="form-group">
-        <label>Chọn logo mới (nếu cần thay đổi)</label>
-        <input type="file" name="LogoFile" class="form-control" />
-    </div>
-
-    <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
-    <a asp-action="EmployerProfile" class="btn btn-secondary">Hủy</a>
-</form>
