@@ -41,10 +41,7 @@ namespace BTL.Models
         [Column("ngay_tao")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public DateTime NgayTao { get; set; } = DateTime.Now;
-s
         
-        
-
         //Liên kết với NhaTuyenDung
         public virtual NhaTuyenDung ?NhaTuyenDung { get; set; }
 
