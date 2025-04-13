@@ -33,14 +33,12 @@ namespace BTL.Controllers
                 return RedirectToAction("Login", "Account");
             }
 
-            // Lấy thông tin người dùng từ email
             var nguoiDung = await _nguoiDungRepo.GetByEmailAsync(email);
             if (nguoiDung == null)
             {
                 return RedirectToAction("Login", "Account");
             }
 
-            // Lấy thông tin nhà tuyển dụng từ UserId
             var nhaTuyenDung = await _nhaTuyenDungRepo.GetByUserIdAsync(nguoiDung.Id);
             if (nhaTuyenDung == null)
             {
