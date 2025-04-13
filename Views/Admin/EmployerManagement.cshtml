@@ -1,0 +1,107 @@
+@using BTL.PagedResults
+@model PagedResult<NhaTuyenDung>
+
+<div class="container py-5">
+    <div class="card shadow-sm rounded-4">
+        <div class="card-body">
+            <h3 class="text-center text-primary mb-4 fw-bold">Quản lý Nhà Tuyển Dụng</h3>
+
+            <!-- Thanh tìm kiếm -->
+            <div class="input-group mb-4">
+                <input type="text" id="searchInput" class="form-control rounded-start-pill" placeholder="🔍 Tìm theo tên công ty hoặc địa chỉ...">
+                <button class="btn btn-outline-primary rounded-end-pill px-4" id="searchBtn">Tìm</button>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table table-hover align-middle text-center shadow-sm rounded-3 overflow-hidden">
+                    <thead class="bg-primary text-white">
+                        <tr>
+                            <th>Tên công ty</th>
+                            <th>Địa chỉ</th>
+                            <th>Tùy chọn</th>
+                        </tr>
+                    </thead>
+                    <tbody id="employerTableBody">
+                        @foreach (var employer in Model.Items)
+                        {
+                            <tr id="emp-@employer.Id">
+                                <td class="employer-name">@employer.TenCongTy</td>
+                                <td class="employer-address">@employer.DiaChi</td>
+                                <td>
+                                    <button class="btn btn-sm btn-outline-danger delete-btn" data-id="@employer.Id">
+                                        <i class="bi bi-trash3"></i> Xóa
+                                    </button>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Phân trang -->
+            <div class="d-flex justify-content-between align-items-center mt-4">
+                <div class="text-muted">Trang @Model.PageNumber / @Model.TotalPages</div>
+                <ul class="pagination pagination-sm mb-0">
+                    @for (int i = 1; i <= Model.TotalPages; i++)
+                    {
+                        <li class="page-item @(i == Model.PageNumber ? "active" : "")">
+                            <a class="page-link rounded-pill" href="@Url.Action("EmployerManagement", new { pageNumber = i })">@i</a>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            // Xử lý xóa
+            $('.delete-btn').click(function () {
+                if (confirm("Bạn có chắc muốn xóa nhà tuyển dụng này không?")) {
+                    const id = $(this).data('id');
+                    const row = $('#emp-' + id);
+
+                    $.ajax({
+                        url: '/Admin/DeleteEmployer/' + id,
+                        type: 'DELETE',
+                        success: function (res) {
+                            if (res.success) {
+                                row.fadeOut(300, function () { $(this).remove(); });
+                            } else {
+                                alert("Lỗi: " + res.message);
+                            }
+                        },
+                        error: function () {
+                            alert("Xóa không thành công. Vui lòng thử lại.");
+                        }
+                    });
+                }
+            });
+
+            // Tìm kiếm
+            $('#searchBtn').click(function () {
+                const keyword = $('#searchInput').val().toLowerCase();
+
+                $('#employerTableBody tr').each(function () {
+                    const name = $(this).find('.employer-name').text().toLowerCase();
+                    const address = $(this).find('.employer-address').text().toLowerCase();
+
+                    if (name.includes(keyword) || address.includes(keyword)) {
+                        $(this).show();
+                    } else {
+                        $(this).hide();
+                    }
+                });
+            });
+
+            // Enter để tìm
+            $('#searchInput').keypress(function (e) {
+                if (e.which == 13) {
+                    $('#searchBtn').click();
+                }
+            });
+        });
+    </script>
+}

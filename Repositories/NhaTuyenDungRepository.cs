@@ -39,5 +39,11 @@ namespace BTL.Repositories
             Update(nhaTuyenDung);
             await SaveChangesAsync();
         }
+
+        //Lấy ra tất cả nhà tuyển dụng
+        public async Task<IEnumerable<NhaTuyenDung>> GetAllNhaTuyenDungAsync()
+        {
+            return await GetAllAsync();
+        }
     }
 }

@@ -1,0 +1,109 @@
+@using BTL.PagedResults
+@model PagedResult<CongViec>
+
+<div class="container py-5">
+    <div class="card shadow-sm rounded-4">
+        <div class="card-body">
+            <h3 class="text-center text-primary mb-4 fw-bold">Quản lý Công Việc</h3>
+
+            <!-- Thanh tìm kiếm -->
+            <div class="input-group mb-4">
+                <input type="text" id="searchInput" class="form-control rounded-start-pill" placeholder="🔍 Tìm theo tiêu đề công việc...">
+                <button class="btn btn-outline-primary rounded-end-pill px-4" id="searchBtn">Tìm</button>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table table-hover align-middle text-center shadow-sm rounded-3 overflow-hidden">
+                    <thead class="bg-primary text-white">
+                        <tr>
+                            <th>Tiêu đề</th>
+                            <th>Nhà tuyển dụng</th>
+                            <th>Địa điểm</th>
+                            <th>Loại hình</th>
+                            <th>Ngày đăng</th>
+                            <th>Tùy chọn</th>
+                        </tr>
+                    </thead>
+                    <tbody id="jobTableBody">
+                        @foreach (var job in Model.Items)
+                        {
+                            <tr id="job-@job.Id">
+                                <td class="job-title">@job.TieuDe</td>
+                                <td>@job.NhaTuyenDung.TenCongTy</td>
+                                <td>@job.DiaDiem</td>
+                                <td>@job.LoaiHinh</td>
+                                <td>@job.NgayDang.ToString("dd/MM/yyyy")</td>
+                                <td>
+                                    <button class="btn btn-sm btn-outline-danger delete-btn" data-id="@job.Id">
+                                        <i class="bi bi-trash3"></i> Xóa
+                                    </button>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Phân trang -->
+            <div class="d-flex justify-content-between align-items-center mt-4">
+                <div class="text-muted">Trang @Model.PageNumber / @Model.TotalPages</div>
+                <ul class="pagination pagination-sm mb-0">
+                    @for (int i = 1; i <= Model.TotalPages; i++)
+                    {
+                        <li class="page-item @(i == Model.PageNumber ? "active" : "")">
+                            <a class="page-link rounded-pill" href="@Url.Action("JobManagement", new { pageNumber = i })">@i</a>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        // Xử lý xóa
+        $('.delete-btn').click(function () {
+            if (confirm("Bạn có chắc muốn xóa công việc này không?")) {
+                const id = $(this).data('id');
+                const row = $('#job-' + id);
+
+                $.ajax({
+                    url: '/Admin/DeleteJob/' + id,
+                    type: 'DELETE',
+                    success: function (res) {
+                        if (res.success) {
+                            row.fadeOut(300, function () { $(this).remove(); });
+                        } else {
+                            alert("Lỗi: " + res.message);
+                        }
+                    },
+                    error: function () {
+                        alert("Xóa không thành công. Vui lòng thử lại.");
+                    }
+                });
+            }
+        });
+
+        // Xử lý tìm kiếm
+        $('#searchBtn').click(function () {
+            const keyword = $('#searchInput').val().toLowerCase();
+
+            $('#jobTableBody tr').each(function () {
+                const title = $(this).find('.job-title').text().toLowerCase();
+                if (title.includes(keyword)) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            });
+        });
+
+        // Enter để tìm
+        $('#searchInput').keypress(function (e) {
+            if (e.which == 13) {
+                $('#searchBtn').click();
+            }
+        });
+    });
+</script>

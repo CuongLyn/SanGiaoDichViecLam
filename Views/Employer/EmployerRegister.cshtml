@@ -4,36 +4,60 @@
     ViewData["Title"] = "Đăng ký Nhà Tuyển Dụng";
 }
 
-<h2 class="text-center">Đăng ký Nhà Tuyển Dụng</h2>
 
-<form asp-controller="Employer" asp-action="EmployerRegister" method="post" class="container mt-4" enctype="multipart/form-data">
-    <div class="mb-3">
-        <label asp-for="TenCongTy" class="form-label">Tên Công Ty</label>
-        <input asp-for="TenCongTy" class="form-control" required />
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+    <div class="card shadow p-4 rounded" style="width: 100%; max-width: 600px;">
+        <h3 class="text-center text-primary mb-4">
+            <i class="bi bi-building-add me-2"></i>Đăng ký Nhà Tuyển Dụng
+        </h3>
+
+        <form asp-controller="Employer" asp-action="EmployerRegister" method="post" enctype="multipart/form-data">
+
+            <div class="mb-3">
+                <label asp-for="TenCongTy" class="form-label">
+                    <i class="bi bi-buildings-fill me-1"></i>Tên Công Ty
+                </label>
+                <input asp-for="TenCongTy" class="form-control" required />
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="DiaChi" class="form-label">
+                    <i class="bi bi-geo-alt-fill me-1"></i>Địa Chỉ
+                </label>
+                <input asp-for="DiaChi" class="form-control" required />
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="MoTaCongTy" class="form-label">
+                    <i class="bi bi-file-text-fill me-1"></i>Mô Tả Công Ty
+                </label>
+                <textarea asp-for="MoTaCongTy" class="form-control" rows="4" required></textarea>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Website" class="form-label">
+                    <i class="bi bi-globe2 me-1"></i>Website
+                </label>
+                <input asp-for="Website" class="form-control" />
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Logo" class="form-label">
+                    <i class="bi bi-image-fill me-1"></i>Logo Công Ty
+                </label>
+                <input type="file" name="LogoFile" class="form-control" required />
+                <span asp-validation-for="LogoFile" class="text-danger"></span>
+            </div>
+
+            <div class="d-grid gap-2 mt-4">
+                <button type="submit" class="btn btn-success">
+                    <i class="bi bi-check-circle-fill me-1"></i>Đăng ký
+                </button>
+                <a asp-controller="Home" asp-action="Index" class="btn btn-outline-secondary">
+                    <i class="bi bi-arrow-left-circle me-1"></i>Quay lại
+                </a>
+            </div>
+
+        </form>
     </div>
-
-    <div class="mb-3">
-        <label asp-for="DiaChi" class="form-label">Địa Chỉ</label>
-        <input asp-for="DiaChi" class="form-control" required />
-    </div>
-
-    <div class="mb-3">
-        <label asp-for="MoTaCongTy" class="form-label">Mô Tả Công Ty</label>
-        <textarea asp-for="MoTaCongTy" class="form-control" rows="4" required></textarea>
-    </div>
-
-    <div class="mb-3">
-        <label asp-for="Website" class="form-label">Website</label>
-        <input asp-for="Website" class="form-control" />
-    </div>
-
-    <div class="mb-3">
-        <label asp-for="Logo" class="form-label">Logo Công Ty</label>
-        <input type="file" name="LogoFile" class="form-control" required />
-        <span asp-validation-for="LogoFile" class="text-danger"></span>
-    </div>
-
-
-    <button type="submit" class="btn btn-primary">Đăng ký</button>
-    <a asp-controller="Home" asp-action="Index" class="btn btn-secondary">Quay lại</a>
-</form>
+</div>

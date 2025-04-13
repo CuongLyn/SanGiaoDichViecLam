@@ -30,5 +30,26 @@ namespace BTL.Repositories
         {
             return await _context.NguoiDungs.FindAsync(id);
         }
+
+        //Lấy tất cả người dùng
+        public async Task<IEnumerable<NguoiDung>> GetAllNguoiDungAsync()
+        {
+            return await GetAllAsync();
+        }
+
+        //Xóa người dùng
+        public async Task<bool> DeleteNguoiDungAsync(int id)
+        {
+            var nguoiDung = await GetByIdAsync(id);
+            if (nguoiDung != null)
+            {
+                Delete(nguoiDung); // Sử dụng phương thức Remove kế thừa từ GenericRepository
+                await SaveChangesAsync(); // Lưu thay đổi vào cơ sở dữ liệu
+                return true; // Trả về true nếu xóa thành công
+            }
+            return false; // Trả về false nếu không tìm thấy người dùng
+        }
+
+
     }
 }

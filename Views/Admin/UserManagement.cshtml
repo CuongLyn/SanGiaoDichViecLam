@@ -1,0 +1,102 @@
+@using BTL.PagedResults
+@model PagedResult<NguoiDung>
+
+<div class="container mt-5">
+    <div class="card shadow rounded-4 p-4">
+        <h2 class="text-center mb-4 text-primary fw-bold">Quản lý Người Dùng</h2>
+
+        <!-- Thanh tìm kiếm -->
+        <div class="input-group mb-4">
+            <input type="text" id="searchInput" class="form-control" placeholder="Tìm theo họ tên, email...">
+            <button class="btn btn-outline-primary" id="searchBtn">Tìm kiếm</button>
+        </div>
+
+        <div class="table-responsive">
+                <table class="table table-hover align-middle text-center shadow-sm rounded-3 overflow-hidden">
+                    <thead class="bg-primary text-white">
+                        <tr>
+                            <th>Họ tên</th>
+                            <th>Email</th>
+                            <th>Số điện thoại</th>
+                            <th>Tùy chọn</th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody id="userTableBody">
+                        @foreach (var user in Model.Items)
+                        {
+                            <tr id="user-@user.Id">
+                                <td class="user-name">@user.HoTen</td>
+                                <td class="user-email">@user.Email</td>
+                                <td>@user.SoDienThoai</td>
+                                <td>
+                                    <button class="btn btn-sm btn-outline-danger delete-btn" data-id="@user.Id">
+                                        <i class="bi bi-trash3"></i> Xóa
+                                    </button>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+    <!-- Phân trang -->
+        <div class="d-flex justify-content-between align-items-center mt-4">
+            <div class="text-muted">Trang @Model.PageNumber / @Model.TotalPages</div>
+            <ul class="pagination pagination-sm mb-0">
+                @for (int i = 1; i <= Model.TotalPages; i++)
+                {
+                    <li class="page-item @(i == Model.PageNumber ? "active" : "")">
+                        <a class="page-link rounded-pill" href="@Url.Action("UserManagement", new { pageNumber = i })">@i</a>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Xử lý xóa
+            $(".delete-btn").on("click", function () {
+                var userId = $(this).data("id");
+                var row = $(this).closest("tr");
+
+                if (confirm("Bạn có chắc chắn muốn xóa người dùng này?")) {
+                    $.ajax({
+                        url: '@Url.Action("Delete", "Admin")/' + userId,
+                        type: 'DELETE',
+                        success: function (result) {
+                            row.fadeOut(300, function () { $(this).remove(); });
+                        },
+                        error: function () {
+                            alert("Có lỗi xảy ra khi xóa người dùng.");
+                        }
+                    });
+                }
+            });
+
+            // Tìm kiếm
+            $('#searchBtn').click(function () {
+                const keyword = $('#searchInput').val().toLowerCase();
+                $('#userTableBody tr').each(function () {
+                    const name = $(this).find('.user-name').text().toLowerCase();
+                    const email = $(this).find('.user-email').text().toLowerCase();
+                    if (name.includes(keyword) || email.includes(keyword)) {
+                        $(this).show();
+                    } else {
+                        $(this).hide();
+                    }
+                });
+            });
+
+            $('#searchInput').keypress(function (e) {
+                if (e.which === 13) {
+                    $('#searchBtn').click();
+                }
+            });
+        });
+    </script>
+}

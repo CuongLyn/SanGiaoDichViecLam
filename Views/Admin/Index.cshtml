@@ -1,0 +1,41 @@
+@{
+    ViewData["Title"] = "Trang Quản Trị";
+}
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Chào mừng bạn đến với Trang Quản Trị</h2>
+
+    <div class="row text-center">
+        <div class="col-md-4">
+            <div class="card shadow-sm border-0 rounded-3">
+                <div class="card-body">
+                    <h5 class="card-title">Người dùng</h5>
+                    <p class="card-text display-6 fw-bold text-primary">@ViewBag.UserCount</p>
+                    <a asp-controller="Admin" asp-action="UserManagement" class="btn btn-outline-primary">Quản lý người dùng</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mt-4 mt-md-0">
+            <div class="card shadow-sm border-0 rounded-3">
+                <div class="card-body">
+                    <h5 class="card-title">Việc làm</h5>
+                    <p class="card-text display-6 fw-bold text-success">@ViewBag.JobCount</p>
+                    <a asp-controller="Admin" asp-action="JobManagement" class="btn btn-outline-success">Quản lý việc làm</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mt-4 mt-md-0">
+            <div class="card shadow-sm border-0 rounded-3">
+                <div class="card-body">
+                    <h5 class="card-title">Nhà tuyển dụng</h5>
+                    <p class="card-text display-6 fw-bold text-danger">@ViewBag.EmployerCount</p>
+                    <a asp-controller="Admin" asp-action="EmployerManagement" class="btn btn-outline-danger">Quản lý nhà tuyển dụng</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center mt-5">
+        <a asp-controller="Account" asp-action="Logout" class="btn btn-secondary">Đăng xuất</a>
+    </div>
+</div>

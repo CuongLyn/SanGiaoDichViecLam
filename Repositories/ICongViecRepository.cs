@@ -19,5 +19,8 @@ namespace BTL.Repositories
         //Tìm kiếm
         Task<List<CongViec>> TimKiemCongViecAsync(string tuKhoa, string diaDiem);
 
+        //Get all
+        Task<List<CongViec>> GetAllCongViecAsync();
+
     }
 }

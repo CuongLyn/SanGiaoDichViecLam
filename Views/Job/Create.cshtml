@@ -4,40 +4,53 @@
     ViewData["Title"] = "Thêm Công Việc";
 }
 
-<h2 class="text-center">@ViewData["Title"]</h2>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-lg rounded-3">
+                <div class="card-header bg-primary text-white text-center">
+                    <h4>@ViewData["Title"]</h4>
+                </div>
+                <div class="card-body">
+                    <form asp-controller="Job" asp-action="CreateJob" method="post">
+                        <div class="mb-3">
+                            <label asp-for="TieuDe" class="form-label">Tiêu Đề</label>
+                            <input asp-for="TieuDe" class="form-control" required />
+                        </div>
 
-<form asp-controller="Job" asp-action="CreateJob" method="post">
-   
-    <div class="mb-3">
-        <label asp-for="TieuDe" class="form-label">Tiêu Đề</label>
-        <input asp-for="TieuDe" class="form-control" required>
+                        <div class="mb-3">
+                            <label asp-for="MoTa" class="form-label">Mô Tả</label>
+                            <textarea asp-for="MoTa" class="form-control" rows="4"></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="DiaDiem" class="form-label">Địa Điểm</label>
+                            <input asp-for="DiaDiem" class="form-control" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="MucLuong" class="form-label">Mức Lương</label>
+                            <input asp-for="MucLuong" class="form-control" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="LoaiHinh" class="form-label">Loại Hình</label>
+                            <select asp-for="LoaiHinh" class="form-select">
+                                <option value="">-- Chọn loại hình --</option>
+                                <option value="Full-time">Full-time</option>
+                                <option value="Part-time">Part-time</option>
+                                <option value="Freelance">Freelance</option>
+                                <option value="Remote">Remote</option>
+                            </select>
+                        </div>
+
+                        <div class="d-flex justify-content-between">
+                            <a asp-controller="Employer" asp-action="EmployerProfile" class="btn btn-secondary">Quay lại</a>
+                            <button type="submit" class="btn btn-success">Thêm Công Việc</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
-
-    <div class="mb-3">
-        <label asp-for="MoTa" class="form-label">Mô Tả</label>
-        <textarea asp-for="MoTa" class="form-control"></textarea>
-    </div>
-
-    <div class="mb-3">
-        <label asp-for="DiaDiem" class="form-label">Địa Điểm</label>
-        <input asp-for="DiaDiem" class="form-control">
-    </div>
-
-    <div class="mb-3">
-        <label asp-for="MucLuong" class="form-label">Mức Lương</label>
-        <input asp-for="MucLuong" class="form-control">
-    </div>
-
-    <div class="mb-3">
-        <label asp-for="LoaiHinh" class="form-label">Loại Hình</label>
-        <select asp-for="LoaiHinh" class="form-select">
-            <option value="Full-time">Full-time</option>
-            <option value="Part-time">Part-time</option>
-            <option value="Freelance">Freelance</option>
-            <option value="Remote">Remote</option>
-        </select>
-    </div>
-
-    <button type="submit" class="btn btn-primary">Thêm Công Việc</button>
-    <a asp-controller="Employer" asp-action="EmployerProfile" class="btn btn-secondary">Quay lại</a>
-</form>
+</div>

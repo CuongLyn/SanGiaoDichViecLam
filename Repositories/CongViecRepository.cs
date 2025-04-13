@@ -84,6 +84,14 @@ namespace BTL.Repositories
             return await query.ToListAsync();
         }
 
+        //Get all
+        public async Task<List<CongViec>> GetAllCongViecAsync()
+        {
+            return await _context.CongViecs
+                .Include(cv => cv.NhaTuyenDung)
+                .ToListAsync();
+        }
+
 
        
     }

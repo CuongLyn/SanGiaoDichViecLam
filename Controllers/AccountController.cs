@@ -80,6 +80,11 @@ namespace BTL.Controllers
                 HttpContext.Session.SetString("HoTen", user.HoTen ?? "");
                 HttpContext.Session.SetInt32("Id", user.Id);
 
+                if (user.Email == "admin@gmail.com")
+                {
+                    return RedirectToAction("Index", "Admin"); 
+                }
+
                 return RedirectToAction("Index", "Home");
             }
 

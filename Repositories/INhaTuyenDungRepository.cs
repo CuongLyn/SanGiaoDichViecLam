@@ -9,5 +9,6 @@ namespace BTL.Repositories
         Task<NhaTuyenDung?> GetByIdAsync(int id);
         Task AddNhaTuyenDungAsync(NhaTuyenDung nhaTuyenDung);
         Task UpdateNhaTuyenDungAsync(NhaTuyenDung nhaTuyenDung);
+        Task<IEnumerable<NhaTuyenDung>> GetAllNhaTuyenDungAsync();
     }
 }
